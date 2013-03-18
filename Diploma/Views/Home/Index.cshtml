@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Электронная очередь";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Выберите действие</h2>
+@Html.ActionLink("Встать в очередь", "GetInLine", "Home")<br />
+@Html.ActionLink("Проверить место в очереди", "Check", "Home")<br />
+@Html.ActionLink("Вопросы и ответы", "FAQ", "Home")<br />

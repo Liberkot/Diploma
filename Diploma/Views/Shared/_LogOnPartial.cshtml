@@ -1,0 +1,11 @@
+﻿@using Diploma.Models
+@if (Request.IsAuthenticated)
+    {
+        <strong>Добро пожаловать, @Html.Encode(Account.GetName(User.Identity.Name).first_name) @Html.Encode(Account.GetName(User.Identity.Name).last_name)!</strong>
+        @Html.ActionLink("Выйти", "LogOut", "Account")
+        }
+else
+{
+        @Html.ActionLink("Войти", "LogOn", "Account")<br/>
+        @Html.ActionLink("Зарегистрироваться", "Register", "Account")
+}

@@ -1,0 +1,60 @@
+﻿@model Diploma.Models.RegisterAccount
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Регистрация</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Во время регистрации произошла ошибка. Пожалуйста введите корректные данные и повторите попытку.")
+    <div>
+        <fieldset>
+            <legend>Информация об аккаунте</legend>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.email)
+                @Html.ValidationMessageFor(u => u.email)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.password)
+                @Html.ValidationMessageFor(u => u.password)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.confirmpassword)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.confirmpassword)
+                @Html.ValidationMessageFor(u => u.confirmpassword)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.first_name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.first_name)
+                @Html.ValidationMessageFor(u => u.first_name)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.last_name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.last_name)
+                @Html.ValidationMessageFor(u => u.last_name)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.phone)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.phone)
+                @Html.ValidationMessageFor(u => u.phone)
+            </div>
+            <br />
+        </fieldset>
+    </div>
+    <input type="submit" value="Зарегистрироваться" />
+}

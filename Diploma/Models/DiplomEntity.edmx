@@ -1,0 +1,738 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DiplomModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DiplomModelStoreContainer">
+          <EntitySet Name="Authorization" EntityType="DiplomModel.Store.Authorization" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="District" EntityType="DiplomModel.Store.District" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Dou" EntityType="DiplomModel.Store.Dou" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DouConnection" EntityType="DiplomModel.Store.DouConnection" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="House" EntityType="DiplomModel.Store.House" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Street" EntityType="DiplomModel.Store.Street" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="DiplomModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Dou_District1" Association="DiplomModel.Store.FK_Dou_District1">
+            <End Role="District" EntitySet="District" />
+            <End Role="Dou" EntitySet="Dou" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dou_Street" Association="DiplomModel.Store.FK_Dou_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Dou" EntitySet="Dou" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DouConnection_Dou" Association="DiplomModel.Store.FK_DouConnection_Dou">
+            <End Role="Dou" EntitySet="Dou" />
+            <End Role="DouConnection" EntitySet="DouConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DouConnection_User" Association="DiplomModel.Store.FK_DouConnection_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="DouConnection" EntitySet="DouConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_Street" Association="DiplomModel.Store.FK_House_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="House" EntitySet="House" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Street_District" Association="DiplomModel.Store.FK_Street_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Street" EntitySet="Street" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Authorization" Association="DiplomModel.Store.FK_User_Authorization">
+            <End Role="Authorization" EntitySet="Authorization" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_District" Association="DiplomModel.Store.FK_User_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Dou" Association="DiplomModel.Store.FK_User_Dou">
+            <End Role="Dou" EntitySet="Dou" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Dou1" Association="DiplomModel.Store.FK_User_Dou1">
+            <End Role="Dou" EntitySet="Dou" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Authorization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pass" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="district" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dou">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="dou_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="dou_district" Type="int" Nullable="false" />
+          <Property Name="dou_street" Type="int" Nullable="false" />
+          <Property Name="dou_house" Type="int" Nullable="false" />
+          <Property Name="dou_group01" Type="int" Nullable="false" />
+          <Property Name="dou_group12" Type="int" Nullable="false" />
+          <Property Name="dou_group23" Type="int" Nullable="false" />
+          <Property Name="dou_group34" Type="int" Nullable="false" />
+          <Property Name="dou_group45" Type="int" Nullable="false" />
+          <Property Name="dou_group56" Type="int" Nullable="false" />
+          <Property Name="dou_group67" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DouConnection">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="douid" Type="int" Nullable="false" />
+          <Property Name="dou_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="userid" Type="int" Nullable="false" />
+          <Property Name="dou_user_rate" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="num" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="streetid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="street" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="districtid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="third_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="date_birth" Type="date" Nullable="false" />
+          <Property Name="sex" Type="bit" Nullable="false" />
+          <Property Name="type_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="series_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="number_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="date_issue" Type="date" Nullable="false" />
+          <Property Name="adr_district" Type="int" Nullable="false" />
+          <Property Name="adr_street" Type="int" Nullable="false" />
+          <Property Name="adr_house" Type="int" Nullable="false" />
+          <Property Name="pr_type" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="pr_first_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pr_last_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pr_third_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pr_type_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pr_series_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pr_number_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pr_date_issue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="year_enter" Type="date" Nullable="false" />
+          <Property Name="during_year_offer" Type="bit" Nullable="false" />
+          <Property Name="main_dou" Type="int" Nullable="false" />
+          <Property Name="another_dou" Type="int" Nullable="false" />
+          <Property Name="privilege" Type="int" Nullable="false" />
+          <Property Name="time_of_study" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dou_District1">
+          <End Role="District" Type="DiplomModel.Store.District" Multiplicity="1" />
+          <End Role="Dou" Type="DiplomModel.Store.Dou" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Dou">
+              <PropertyRef Name="dou_district" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dou_Street">
+          <End Role="Street" Type="DiplomModel.Store.Street" Multiplicity="1" />
+          <End Role="Dou" Type="DiplomModel.Store.Dou" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Dou">
+              <PropertyRef Name="dou_street" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DouConnection_Dou">
+          <End Role="Dou" Type="DiplomModel.Store.Dou" Multiplicity="1" />
+          <End Role="DouConnection" Type="DiplomModel.Store.DouConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dou">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DouConnection">
+              <PropertyRef Name="douid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DouConnection_User">
+          <End Role="User" Type="DiplomModel.Store.User" Multiplicity="1" />
+          <End Role="DouConnection" Type="DiplomModel.Store.DouConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DouConnection">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_Street">
+          <End Role="Street" Type="DiplomModel.Store.Street" Multiplicity="1" />
+          <End Role="House" Type="DiplomModel.Store.House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="House">
+              <PropertyRef Name="streetid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Street_District">
+          <End Role="District" Type="DiplomModel.Store.District" Multiplicity="1" />
+          <End Role="Street" Type="DiplomModel.Store.Street" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Street">
+              <PropertyRef Name="districtid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Authorization">
+          <End Role="Authorization" Type="DiplomModel.Store.Authorization" Multiplicity="1" />
+          <End Role="User" Type="DiplomModel.Store.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Authorization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_District">
+          <End Role="District" Type="DiplomModel.Store.District" Multiplicity="1" />
+          <End Role="User" Type="DiplomModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="adr_district" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Dou">
+          <End Role="Dou" Type="DiplomModel.Store.Dou" Multiplicity="1" />
+          <End Role="User" Type="DiplomModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dou">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="main_dou" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Dou1">
+          <End Role="Dou" Type="DiplomModel.Store.Dou" Multiplicity="1" />
+          <End Role="User" Type="DiplomModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dou">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="another_dou" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DiplomModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DiplomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authorization" EntityType="DiplomModel.Authorization" />
+          <EntitySet Name="District" EntityType="DiplomModel.District" />
+          <EntitySet Name="Dou" EntityType="DiplomModel.Dou" />
+          <EntitySet Name="DouConnection" EntityType="DiplomModel.DouConnection" />
+          <EntitySet Name="House" EntityType="DiplomModel.House" />
+          <EntitySet Name="Street" EntityType="DiplomModel.Street" />
+          <EntitySet Name="User" EntityType="DiplomModel.User" />
+          <AssociationSet Name="FK_User_Authorization" Association="DiplomModel.FK_User_Authorization">
+            <End Role="Authorization" EntitySet="Authorization" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dou_District1" Association="DiplomModel.FK_Dou_District1">
+            <End Role="District" EntitySet="District" />
+            <End Role="Dou" EntitySet="Dou" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Street_District" Association="DiplomModel.FK_Street_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Street" EntitySet="Street" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_District" Association="DiplomModel.FK_User_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dou_Street" Association="DiplomModel.FK_Dou_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Dou" EntitySet="Dou" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DouConnection_Dou" Association="DiplomModel.FK_DouConnection_Dou">
+            <End Role="Dou" EntitySet="Dou" />
+            <End Role="DouConnection" EntitySet="DouConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Dou" Association="DiplomModel.FK_User_Dou">
+            <End Role="Dou" EntitySet="Dou" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Dou1" Association="DiplomModel.FK_User_Dou1">
+            <End Role="Dou" EntitySet="Dou" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DouConnection_User" Association="DiplomModel.FK_DouConnection_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="DouConnection" EntitySet="DouConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_Street" Association="DiplomModel.FK_House_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="House" EntitySet="House" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Authorization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pass" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="first_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="last_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="phone" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="DiplomModel.FK_User_Authorization" FromRole="Authorization" ToRole="User" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="district1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dou" Relationship="DiplomModel.FK_Dou_District1" FromRole="District" ToRole="Dou" />
+          <NavigationProperty Name="Street" Relationship="DiplomModel.FK_Street_District" FromRole="District" ToRole="Street" />
+          <NavigationProperty Name="User" Relationship="DiplomModel.FK_User_District" FromRole="District" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Dou">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="dou_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="dou_district" Nullable="false" />
+          <Property Type="Int32" Name="dou_street" Nullable="false" />
+          <Property Type="Int32" Name="dou_house" Nullable="false" />
+          <Property Type="Int32" Name="dou_group01" Nullable="false" />
+          <Property Type="Int32" Name="dou_group12" Nullable="false" />
+          <Property Type="Int32" Name="dou_group23" Nullable="false" />
+          <Property Type="Int32" Name="dou_group34" Nullable="false" />
+          <Property Type="Int32" Name="dou_group45" Nullable="false" />
+          <Property Type="Int32" Name="dou_group56" Nullable="false" />
+          <Property Type="Int32" Name="dou_group67" Nullable="false" />
+          <NavigationProperty Name="District" Relationship="DiplomModel.FK_Dou_District1" FromRole="Dou" ToRole="District" />
+          <NavigationProperty Name="Street" Relationship="DiplomModel.FK_Dou_Street" FromRole="Dou" ToRole="Street" />
+          <NavigationProperty Name="DouConnection" Relationship="DiplomModel.FK_DouConnection_Dou" FromRole="Dou" ToRole="DouConnection" />
+          <NavigationProperty Name="User" Relationship="DiplomModel.FK_User_Dou" FromRole="Dou" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="DiplomModel.FK_User_Dou1" FromRole="Dou" ToRole="User" />
+        </EntityType>
+        <EntityType Name="DouConnection">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="douid" Nullable="false" />
+          <Property Type="String" Name="dou_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="userid" Nullable="false" />
+          <Property Type="Double" Name="dou_user_rate" Nullable="false" />
+          <NavigationProperty Name="Dou" Relationship="DiplomModel.FK_DouConnection_Dou" FromRole="DouConnection" ToRole="Dou" />
+          <NavigationProperty Name="User" Relationship="DiplomModel.FK_DouConnection_User" FromRole="DouConnection" ToRole="User" />
+        </EntityType>
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="num" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="streetid" Nullable="false" />
+          <NavigationProperty Name="Street" Relationship="DiplomModel.FK_House_Street" FromRole="House" ToRole="Street" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="street1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="districtid" Nullable="false" />
+          <NavigationProperty Name="District" Relationship="DiplomModel.FK_Street_District" FromRole="Street" ToRole="District" />
+          <NavigationProperty Name="Dou" Relationship="DiplomModel.FK_Dou_Street" FromRole="Street" ToRole="Dou" />
+          <NavigationProperty Name="House" Relationship="DiplomModel.FK_House_Street" FromRole="Street" ToRole="House" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="first_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="last_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="third_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="date_birth" Nullable="false" />
+          <Property Type="Boolean" Name="sex" Nullable="false" />
+          <Property Type="String" Name="type_doc" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="series_doc" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="number_doc" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="date_issue" Nullable="false" />
+          <Property Type="Int32" Name="adr_district" Nullable="false" />
+          <Property Type="Int32" Name="adr_street" Nullable="false" />
+          <Property Type="Int32" Name="adr_house" Nullable="false" />
+          <Property Type="String" Name="pr_type" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pr_first_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pr_last_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pr_third_name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pr_type_doc" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pr_series_doc" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pr_number_doc" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pr_date_issue" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="year_enter" Nullable="false" />
+          <Property Type="Boolean" Name="during_year_offer" Nullable="false" />
+          <Property Type="Int32" Name="main_dou" Nullable="false" />
+          <Property Type="Int32" Name="another_dou" Nullable="false" />
+          <Property Type="Int32" Name="privilege" Nullable="false" />
+          <Property Type="Int32" Name="time_of_study" Nullable="false" />
+          <NavigationProperty Name="Authorization" Relationship="DiplomModel.FK_User_Authorization" FromRole="User" ToRole="Authorization" />
+          <NavigationProperty Name="District" Relationship="DiplomModel.FK_User_District" FromRole="User" ToRole="District" />
+          <NavigationProperty Name="Dou" Relationship="DiplomModel.FK_User_Dou" FromRole="User" ToRole="Dou" />
+          <NavigationProperty Name="Dou1" Relationship="DiplomModel.FK_User_Dou1" FromRole="User" ToRole="Dou" />
+          <NavigationProperty Name="DouConnection" Relationship="DiplomModel.FK_DouConnection_User" FromRole="User" ToRole="DouConnection" />
+        </EntityType>
+        <Association Name="FK_User_Authorization">
+          <End Type="DiplomModel.Authorization" Role="Authorization" Multiplicity="1" />
+          <End Type="DiplomModel.User" Role="User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Authorization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dou_District1">
+          <End Type="DiplomModel.District" Role="District" Multiplicity="1" />
+          <End Type="DiplomModel.Dou" Role="Dou" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Dou">
+              <PropertyRef Name="dou_district" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Street_District">
+          <End Type="DiplomModel.District" Role="District" Multiplicity="1" />
+          <End Type="DiplomModel.Street" Role="Street" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Street">
+              <PropertyRef Name="districtid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_District">
+          <End Type="DiplomModel.District" Role="District" Multiplicity="1" />
+          <End Type="DiplomModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="adr_district" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dou_Street">
+          <End Type="DiplomModel.Street" Role="Street" Multiplicity="1" />
+          <End Type="DiplomModel.Dou" Role="Dou" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Dou">
+              <PropertyRef Name="dou_street" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DouConnection_Dou">
+          <End Type="DiplomModel.Dou" Role="Dou" Multiplicity="1" />
+          <End Type="DiplomModel.DouConnection" Role="DouConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dou">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DouConnection">
+              <PropertyRef Name="douid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Dou">
+          <End Type="DiplomModel.Dou" Role="Dou" Multiplicity="1" />
+          <End Type="DiplomModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dou">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="main_dou" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Dou1">
+          <End Type="DiplomModel.Dou" Role="Dou" Multiplicity="1" />
+          <End Type="DiplomModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dou">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="another_dou" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DouConnection_User">
+          <End Type="DiplomModel.User" Role="User" Multiplicity="1" />
+          <End Type="DiplomModel.DouConnection" Role="DouConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DouConnection">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_Street">
+          <End Type="DiplomModel.Street" Role="Street" Multiplicity="1" />
+          <End Type="DiplomModel.House" Role="House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="House">
+              <PropertyRef Name="streetid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DiplomModelStoreContainer" CdmEntityContainer="DiplomEntities">
+          <EntitySetMapping Name="Authorization">
+            <EntityTypeMapping TypeName="DiplomModel.Authorization">
+              <MappingFragment StoreEntitySet="Authorization">
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="District">
+            <EntityTypeMapping TypeName="DiplomModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="district1" ColumnName="district" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dou">
+            <EntityTypeMapping TypeName="DiplomModel.Dou">
+              <MappingFragment StoreEntitySet="Dou">
+                <ScalarProperty Name="dou_group67" ColumnName="dou_group67" />
+                <ScalarProperty Name="dou_group56" ColumnName="dou_group56" />
+                <ScalarProperty Name="dou_group45" ColumnName="dou_group45" />
+                <ScalarProperty Name="dou_group34" ColumnName="dou_group34" />
+                <ScalarProperty Name="dou_group23" ColumnName="dou_group23" />
+                <ScalarProperty Name="dou_group12" ColumnName="dou_group12" />
+                <ScalarProperty Name="dou_group01" ColumnName="dou_group01" />
+                <ScalarProperty Name="dou_house" ColumnName="dou_house" />
+                <ScalarProperty Name="dou_street" ColumnName="dou_street" />
+                <ScalarProperty Name="dou_district" ColumnName="dou_district" />
+                <ScalarProperty Name="dou_name" ColumnName="dou_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DouConnection">
+            <EntityTypeMapping TypeName="DiplomModel.DouConnection">
+              <MappingFragment StoreEntitySet="DouConnection">
+                <ScalarProperty Name="dou_user_rate" ColumnName="dou_user_rate" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="dou_name" ColumnName="dou_name" />
+                <ScalarProperty Name="douid" ColumnName="douid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="House">
+            <EntityTypeMapping TypeName="DiplomModel.House">
+              <MappingFragment StoreEntitySet="House">
+                <ScalarProperty Name="streetid" ColumnName="streetid" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Street">
+            <EntityTypeMapping TypeName="DiplomModel.Street">
+              <MappingFragment StoreEntitySet="Street">
+                <ScalarProperty Name="districtid" ColumnName="districtid" />
+                <ScalarProperty Name="street1" ColumnName="street" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DiplomModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="time_of_study" ColumnName="time_of_study" />
+                <ScalarProperty Name="privilege" ColumnName="privilege" />
+                <ScalarProperty Name="another_dou" ColumnName="another_dou" />
+                <ScalarProperty Name="main_dou" ColumnName="main_dou" />
+                <ScalarProperty Name="during_year_offer" ColumnName="during_year_offer" />
+                <ScalarProperty Name="year_enter" ColumnName="year_enter" />
+                <ScalarProperty Name="pr_date_issue" ColumnName="pr_date_issue" />
+                <ScalarProperty Name="pr_number_doc" ColumnName="pr_number_doc" />
+                <ScalarProperty Name="pr_series_doc" ColumnName="pr_series_doc" />
+                <ScalarProperty Name="pr_type_doc" ColumnName="pr_type_doc" />
+                <ScalarProperty Name="pr_third_name" ColumnName="pr_third_name" />
+                <ScalarProperty Name="pr_last_name" ColumnName="pr_last_name" />
+                <ScalarProperty Name="pr_first_name" ColumnName="pr_first_name" />
+                <ScalarProperty Name="pr_type" ColumnName="pr_type" />
+                <ScalarProperty Name="adr_house" ColumnName="adr_house" />
+                <ScalarProperty Name="adr_street" ColumnName="adr_street" />
+                <ScalarProperty Name="adr_district" ColumnName="adr_district" />
+                <ScalarProperty Name="date_issue" ColumnName="date_issue" />
+                <ScalarProperty Name="number_doc" ColumnName="number_doc" />
+                <ScalarProperty Name="series_doc" ColumnName="series_doc" />
+                <ScalarProperty Name="type_doc" ColumnName="type_doc" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="date_birth" ColumnName="date_birth" />
+                <ScalarProperty Name="third_name" ColumnName="third_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DiplomEntity">
+        <EntityTypeShape EntityType="DiplomModel.Authorization" Width="1.5" PointX="8.25" PointY="3.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="DiplomModel.District" Width="1.5" PointX="0.75" PointY="7.125" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="DiplomModel.Dou" Width="1.5" PointX="5.25" PointY="6.5" Height="4.2879036458333353" />
+        <EntityTypeShape EntityType="DiplomModel.DouConnection" Width="1.5" PointX="7.5" PointY="7.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="DiplomModel.House" Width="1.5" PointX="5.25" PointY="12.25" Height="1.7879850260416745" />
+        <EntityTypeShape EntityType="DiplomModel.Street" Width="1.5" PointX="3" PointY="12" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="DiplomModel.User" Width="1.5" PointX="10.5" PointY="5.125" Height="7.1724251302083388" />
+        <AssociationConnector Association="DiplomModel.FK_User_Authorization" >
+          <ConnectorPoint PointX="9.75" PointY="5.4949446614583337" />
+          <ConnectorPoint PointX="10.5" PointY="5.4949446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_Dou_District1" >
+          <ConnectorPoint PointX="2.25" PointY="8.1151432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="8.1151432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_Street_District" >
+          <ConnectorPoint PointX="1.5" PointY="9.1052864583333317" />
+          <ConnectorPoint PointX="1.5" PointY="13.086293945312502" />
+          <ConnectorPoint PointX="3" PointY="13.086293945312502" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_User_District" >
+          <ConnectorPoint PointX="1.9062525" PointY="9.1052864583333317" />
+          <ConnectorPoint PointX="1.9062525" PointY="11.393951822916668" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="11.393951822916668" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="11.393951822916668" />
+          <ConnectorPoint PointX="10.5" PointY="11.393951822916668" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_Dou_Street" >
+          <ConnectorPoint PointX="3.75" PointY="12" />
+          <ConnectorPoint PointX="3.75" PointY="9.4827759374999943" />
+          <ConnectorPoint PointX="5.25" PointY="9.4827759374999943" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_DouConnection_Dou" >
+          <ConnectorPoint PointX="6.75" PointY="8.6824446614583337" />
+          <ConnectorPoint PointX="7.5" PointY="8.6824446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_User_Dou" >
+          <ConnectorPoint PointX="6.75" PointY="6.96875" />
+          <ConnectorPoint PointX="10.5" PointY="6.96875" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_User_Dou1" >
+          <ConnectorPoint PointX="6.75" PointY="10.357646484375001" />
+          <ConnectorPoint PointX="10.5" PointY="10.357646484375001" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_DouConnection_User" >
+          <ConnectorPoint PointX="10.5" PointY="8.6824446614583337" />
+          <ConnectorPoint PointX="9" PointY="8.6824446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="DiplomModel.FK_House_Street" >
+          <ConnectorPoint PointX="4.5" PointY="13.143992513020837" />
+          <ConnectorPoint PointX="5.25" PointY="13.143992513020837" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
