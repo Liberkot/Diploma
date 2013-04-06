@@ -18,6 +18,60 @@ namespace Diploma.Models
             var entity = new DiplomEntities();
             var dous = entity.Dou.ToList().Where(i => i.dou_district.ToString() == ID);
             return dous;
-        } 
+        }
+
+        public static int GetDouGroupNum(int age)
+        {
+            int num = 0;
+            var entity = new DiplomEntities();
+            var dous = entity.Dou;
+            switch (age)
+            {
+                case 1: foreach (var t in dous)
+                    {
+                        num = num + t.dou_group01;
+                    }
+                    break;
+                case 2: foreach (var t in dous)
+                    {
+                        num = num + t.dou_group12;
+                    }
+                    break;
+                case 3: foreach (var t in dous)
+                    {
+                        num = num + t.dou_group23;
+                    }
+                    break;
+                case 4: foreach (var t in dous)
+                    {
+                        num = num + t.dou_group34;
+                    }
+                    break;
+                case 5: foreach (var t in dous)
+                    {
+                        num = num + t.dou_group45;
+                    }
+                    break;
+                case 6: foreach (var t in dous)
+                    {
+                        num = num + t.dou_group56;
+                    }
+                    break;
+                case 7: foreach (var t in dous)
+                    {
+                        num = num + t.dou_group67;
+                    }
+                    break;
+                case 8:
+                    num = 0;
+                    break;
+                default: foreach (var t in dous)
+                    {
+                        num = num + t.dou_group01;
+                    }
+                    break;
+            }
+            return num;
+        }
     }
 }

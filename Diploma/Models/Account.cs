@@ -56,6 +56,33 @@ namespace Diploma.Models
             var user = entity.Authorization.SingleOrDefault(i => i.email == _email);
             return (user);
         }
+
+        public static int GetKidsNum(string _email)
+        {
+            int numberkids;
+            var entity = new DiplomEntities();
+            var auth = entity.Authorization.SingleOrDefault(i => i.email == _email);
+            var user = entity.User.SingleOrDefault(u => u.authid == auth.id);
+            if (user != null)
+            {
+                numberkids = user.authid;
+            }
+            else
+            {
+                numberkids = 0;
+            }
+            return (numberkids);
+        }
+
+        public static IEnumerable<User> GetKidsInfo(string _email, string _series, string _number)
+        {
+            var entity = new DiplomEntities();
+            var auth = entity.Authorization.SingleOrDefault(i => i.email == _email);
+            var users = entity.User.Where(i => i.authid == auth.id);
+            var series_user = users.Where(i => i.series_doc == _series);
+            var number_user = series_user.Where(i => i.number_doc == _number);
+            return (number_user);
+        }
     }
 
     public class RegisterAccount

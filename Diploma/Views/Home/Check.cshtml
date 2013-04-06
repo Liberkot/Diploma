@@ -1,6 +1,50 @@
-﻿@{
+﻿@using Diploma.Models
+@model Diploma.Models.Users
+@{
     ViewBag.Title = "Check";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Check</h2>
+<h2>
+    Проверка места в очереди</h2>
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("GetInLine", "Home", FormMethod.Post, new { id = "checking" }))
+    {
+        Html.ValidationSummary(true, "Регистрация в очереди не удалась. Проверьте вводимые данные.");
+    <fieldset>
+        <legend>Введите данные ребёнка:</legend>
+        <div class="editor-label">
+            @Html.LabelFor(u => u.series_doc)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(u => u.series_doc)
+            @Html.ValidationMessageFor(u => u.series_doc)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(u => u.number_doc)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(u => u.number_doc)
+            @Html.ValidationMessageFor(u => u.number_doc)
+        </div>
+        <br/>
+        <input type="submit" value="Проверить" />
+    </fieldset>
+    }
+    
+    /*@
+    {
+        var enume = Account.GetKidsInfo(Account.GetName(User.Identity.Name).email, Model.series_doc, Model.number_doc).ToList();
+        foreach (var t in enume)
+            <h3>Имя: @enume.</h3>
+    }*/
+}
+else
+{
+    <p>
+        Для проверки места в очереди вашего ребенка необходимо авторизоваться.</p>
+    <p>@Html.ActionLink("Войдите", "LogOn", "Account") в свой аккаунт.</p>
+    <p>
+        Для регистрации ребёнки в очереди
+        @Html.ActionLink("зарегистрируйтесь", "Register", "Account").</p>
+}

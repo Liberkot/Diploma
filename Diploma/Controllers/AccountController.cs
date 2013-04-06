@@ -64,7 +64,8 @@ namespace Diploma.Controllers
                             pass = FormsAuthentication.HashPasswordForStoringInConfigFile(model.password, "SHA1"),
                             first_name = model.first_name,
                             last_name = model.last_name,
-                            phone = model.phone
+                            phone = model.phone,
+                            admin = false
                         });
                     entity.SaveChanges();
                     FormsAuthentication.SetAuthCookie(model.email, false);

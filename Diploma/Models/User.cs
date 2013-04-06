@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.Web.WebPages.Html;
+using System.Web.Mvc;
+using SelectListItem = System.Web.WebPages.Html.SelectListItem;
 
 namespace Diploma.Models
 {
@@ -24,8 +25,9 @@ namespace Diploma.Models
         [Display(Name = "Отчество")]
         public string third_name { get; set; }
 
-        [Required(ErrorMessage = "Необходимо ввести Дату рождения")]
+        //[Required(ErrorMessage = "Необходимо ввести Дату рождения")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата рождения")]
         public DateTime date_birth { get; set; }
 
@@ -47,34 +49,35 @@ namespace Diploma.Models
         [Display(Name = "Номер документа")]
         public string number_doc { get; set; }
 
-        [Required(ErrorMessage = "Необходимо ввести Дату выдачи")]
+        //[Required(ErrorMessage = "Необходимо ввести Дату выдачи")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:mm/dd/yy}", ApplyFormatInEditMode=true)]
         [Display(Name = "Дата выдачи")]
         public DateTime date_issue { get; set; }
 
         //Адрес проживания ребёнка
-        private List<SelectListItem> _streets = new List<SelectListItem>();
+        /*private List<SelectListItem> streets = new List<SelectListItem>();
         private List<SelectListItem> _houses = new List<SelectListItem>();
         public List<SelectListItem> Streets
         {
-            get { return _streets; }
+            get { return streets; }
         }
 
         public List<SelectListItem> Houses
         {
             get { return _houses; }
-        }
+        }*/
         [Required(ErrorMessage = "Пожалуйста выберите район")]
         [Display(Name = "Район проживания")]
-        public string adr_district { get; set; }
+        public int adr_district { get; set; }
 
         [Required(ErrorMessage = "Пожалуйста выберите улицу")]
         [Display(Name = "Улица")]
-        public string adr_street { get; set; }
+        public int adr_street { get; set; }
 
         [Required]
         [Display(Name = "Номер дома")]
-        public string adr_house { get; set; }
+        public int adr_house { get; set; }
 
         //Данные о представителях
         [Required]
@@ -103,15 +106,13 @@ namespace Diploma.Models
         public string pr_third_name { get; set; }
 
         [Required]
-        [Display(Name = "Тип документа")]
-        public string pr_type_doc { get; set; }
-
-        [Required]
-        [Display(Name = "Серия документа")]
+        [RegularExpression(@"^\d{4}$", ErrorMessage = "Неверная серия паспорта")]
+        [Display(Name = "Серия паспорта")]
         public string pr_series_doc { get; set; }
 
         [Required]
-        [Display(Name = "Номер документа")]
+        [RegularExpression(@"^\d{6}$", ErrorMessage = "Неверный номер паспорта")]
+        [Display(Name = "Номер паспорта")]
         public string pr_number_doc { get; set; }
 
         [Required]
@@ -121,15 +122,14 @@ namespace Diploma.Models
 
         //Данные о детском саде
         [Required]
-        [DataType(DataType.Date)]
         [Display(Name = "Дата поступления")]
-        public DateTime year_enter { get; set; }
+        public int year_enter { get; set; }
 
-        private List<SelectListItem> _years = new List<SelectListItem>();
+        /*private List<SelectListItem> _years = new List<SelectListItem>();
         public List<SelectListItem> Years
         {
             get { return _years; }
-        }
+        }*/
 
         [Required]
         [DataType(DataType.Date)]
@@ -137,28 +137,20 @@ namespace Diploma.Models
         public bool during_year_offer { get; set; }
 
         [Required]
-        [Display(Name = "Район ДОУ")]
+        [Display(Name = "Район главных ДОУ")]
         public int dou_district { get; set; }
 
         [Required]
+        [Display(Name = "Район дополнительных ДОУ")]
+        public int dou_district2 { get; set; }
+
+        [Required]
         [Display(Name = "Главные ДОУ")]
-        public string main_dou { get; set; }
-
-        private List<SelectListItem> _maindou = new List<SelectListItem>();
-        private List<SelectListItem> _anotherdou = new List<SelectListItem>();
-        public List<SelectListItem> Main_dous
-        {
-            get { return _maindou; }
-        }
-
-        public List<SelectListItem> Another_dous
-        {
-            get { return _anotherdou; }
-        }
+        public string[] main_dou { get; set; }
 
         [Required]
         [Display(Name = "Дополнительные ДОУ")]
-        public string another_dou { get; set; }
+        public string[] another_dou { get; set; }
 
         [Required]
         [Display(Name = "Льгота")]
@@ -166,6 +158,6 @@ namespace Diploma.Models
 
         [Required]
         [Display(Name = "Время обучения")]
-        public string time_of_study { get; set; }
+        public int time_of_study { get; set; }
     }
 }

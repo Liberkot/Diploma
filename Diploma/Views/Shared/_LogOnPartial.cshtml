@@ -3,7 +3,11 @@
     {
         <strong>Добро пожаловать, @Html.Encode(Account.GetName(User.Identity.Name).first_name) @Html.Encode(Account.GetName(User.Identity.Name).last_name)!</strong>
         @Html.ActionLink("Выйти", "LogOut", "Account")
+        if (Account.GetName(User.Identity.Name).admin == true)
+        {
+           <br/>@Html.ActionLink("Распределить очередь", "Distribute", "Line")<br/>
         }
+    }
 else
 {
         @Html.ActionLink("Войти", "LogOn", "Account")<br/>
