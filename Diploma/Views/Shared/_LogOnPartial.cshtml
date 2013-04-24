@@ -1,15 +1,15 @@
 ﻿@using Diploma.Models
 @if (Request.IsAuthenticated)
     {
-        <strong>Добро пожаловать, @Html.Encode(Account.GetName(User.Identity.Name).first_name) @Html.Encode(Account.GetName(User.Identity.Name).last_name)!</strong>
-        @Html.ActionLink("Выйти", "LogOut", "Account")
+        <div id="adm"><strong>Добро пожаловать, @Html.Encode(Account.GetName(User.Identity.Name).first_name) @Html.Encode(Account.GetName(User.Identity.Name).last_name)!</strong></div>
+        <div id="login">@Html.ActionLink("Выйти", "LogOut", "Account")</div>
         if (Account.GetName(User.Identity.Name).admin == true)
         {
-           <br/>@Html.ActionLink("Распределить очередь", "Distribute", "Line")<br/>
+           <div id="login">@Html.ActionLink("Распределить очередь", "Distribute", "Line")</div>
         }
     }
 else
 {
-        @Html.ActionLink("Войти", "LogOn", "Account")<br/>
-        @Html.ActionLink("Зарегистрироваться", "Register", "Account")
+        <div id="login">@Html.ActionLink("Войти", "LogOn", "Account")</div><div id="login">@Html.ActionLink("Зарегистрироваться", "Register", "Account")</div>
 }
+

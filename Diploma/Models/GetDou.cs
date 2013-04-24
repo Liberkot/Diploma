@@ -20,7 +20,7 @@ namespace Diploma.Models
             return dous;
         }
 
-        public static int GetDouGroupNum(int age)
+        /*public static int GetDouGroupNum(int age)
         {
             int num = 0;
             var entity = new DiplomEntities();
@@ -72,6 +72,6 @@ namespace Diploma.Models
                     break;
             }
             return num;
-        }
+        }*/
     }
 }

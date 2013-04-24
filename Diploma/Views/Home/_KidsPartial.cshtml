@@ -1,0 +1,22 @@
+﻿@using Diploma.Models
+@if (Request.IsAuthenticated)
+{
+        <div id="recent-posts">
+            <h3 class="title">Дети в очереди:</h3>
+            <ul>
+                @{
+                    var users = GetUser.GetUsersByAuth(Account.GetName(User.Identity.Name).id);
+                    foreach (var l in users)
+                    {
+                        <li><strong><a href="Home/Edit/@l.id">@l.first_name @l.last_name</a></strong> <a href="Home/Delete/@l.id" onclick="return confirm('Вы уверены, что хотите удалить запись @l.first_name @l.last_name из очереди?');">Удалить</a><br/>
+                        @{ var num = GetUser.GetNumberInLine(l.id); }
+                        <small>В очереди на @num месте</small></li>
+                    }
+                }
+            </ul>
+        </div>
+}
+else
+{
+
+}

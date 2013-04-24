@@ -1,0 +1,82 @@
+﻿@using Diploma.Models
+@model Diploma.Models.User
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+    $(function () {
+        //Заполнение dropdownlist год поступление по дате рождения
+        var startDate = $("#birth").val();
+        var yearArray = startDate.split('.');
+        var year = yearArray[2].split(' ');
+        $.post('/Home/GetYearForBirth/' + year[0], function (response) {
+
+            var years = $.parseJSON(response);
+            var ddlyear = $("#year_enter");
+
+            // clear all previous options 
+            $("#year_enter > option").remove();
+
+            // populate the products 
+            for (k = 0; k < years.length; k++) {
+                ddlyear.append($("<option />").val(years[k].Value).text(years[k].Text));
+            }
+        });
+    });
+</script>
+<div id="pages">
+    <h2>
+        Pages</h2>
+    <ul>
+        <li>@Html.ActionLink("Главная страница", "Index", null, new { id = "page1" })</li>
+        <li>@Html.ActionLink("Встать в очередь", "GetInLine", null, new { id = "page2" })</li>
+        <li>@Html.ActionLink("Дети в очереди", "Details", null, new { id = "page3" })</li>
+        <li>@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
+        <li><a id="page5"></a></li>
+    </ul>
+</div>
+<div id="content">
+    <div id="colOne">
+        <div id="latest-post">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.date_birth, new{id="birth"});
+                <fieldset>
+                    <legend>Изменение данных</legend>
+                    @Html.HiddenFor(model => model.id)
+                    <div class="editor-label">
+                        @Html.Label("Год поступления")
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.year_enter, Enumerable.Empty<SelectListItem>(), "Выберите год поступления")
+                        @Html.ValidationMessageFor(model => model.year_enter)
+                    </div>
+                    <div class="editor-label">
+                        @Html.Label("Предлагать поступление в течение года")
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.during_year_offer)
+                        @Html.ValidationMessageFor(model => model.during_year_offer)
+                    </div>
+                    <div class="editor-label">
+                        @Html.Label("Льгота")
+                    </div>
+                    <div class="editor-field">
+                        @{ var privilegelist = Privelege.GetAllPriveleges(); }
+                        @Html.DropDownListFor(model => model.privilege, privilegelist, new { style = "width:300px;" })
+                        @Html.ValidationMessageFor(model => model.privilege)
+                    </div>
+                    <br />
+                    <p>
+                        <input type="submit" value="Обновить" />
+                    </p>
+                </fieldset>
+            }
+            @Html.ActionLink("Назад к списку", "Details")
+        </div>
+    </div>
+</div>

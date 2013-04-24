@@ -18,14 +18,84 @@ namespace Diploma.Controllers
             return View();
         }
 
+        public ActionResult Details()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Delete(string id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return View("Restricted");
+                }
+                bool deluser = GetUser.DelUserById(Convert.ToInt32(id));
+                if (deluser)
+                {
+                    return View("Delete");
+                }
+                return View("NotFound");
+            }
+            catch
+            {
+                return View("NotFound");
+            }
+        }
+
         public ActionResult FAQ()
         {
             return View();
         }
 
-        public ActionResult Check()
+        [HttpGet]
+        public ActionResult Edit(string id)
         {
-            return View();
+            try
+            {
+                if (id == null)
+                {
+                    return View("Restricted");
+                }
+                var userdetails = GetUser.GetUsersById(Convert.ToInt32(id));
+                return View(userdetails);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var entity = new DiplomEntities();
+                    var user = entity.User.SingleOrDefault(i => i.id == model.id);
+                    user.year_enter = model.year_enter;
+                    user.during_year_offer = model.during_year_offer;
+                    user.privilege = model.privilege;
+                    entity.SaveChanges();
+                }
+                return View("Changed");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult GetUsers(string series, string number)
+        {
+            var db = new DiplomEntities();
+            var result = db.User.SingleOrDefault(i => i.series_doc == series && i.number_doc == number);
+            return Json(result.first_name, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -39,6 +109,25 @@ namespace Diploma.Controllers
         {
             try
             {
+                double lgota;
+                switch (model.privilege)
+                {
+                    case 1:
+                        lgota = 1.0;
+                        break;
+                    case 2:
+                        lgota = 0.5;
+                        break;
+                    case 3:
+                        lgota = 0.75;
+                        break;
+                    case 4:
+                        lgota = 0.25;
+                        break;
+                    default:
+                        lgota = 1.0;
+                        break;
+                }
                 if (ModelState.IsValid)
                 {
                     var entity = new DiplomEntities();
@@ -65,11 +154,11 @@ namespace Diploma.Controllers
                         pr_date_issue = model.pr_date_issue,
                         year_enter = model.year_enter,
                         during_year_offer = model.during_year_offer,
-                        privilege = model.privilege,
-                        time_of_study = model.time_of_study,
-                        authid = Account.GetName(User.Identity.Name).id
+                        privilege = lgota,
+                        authid = Account.GetName(User.Identity.Name).id,
+                        status = 0
                     });
-                    entity.SaveChanges();
+                        entity.SaveChanges();
                     var i = entity.User.ToList().Last();
                     foreach (var dou in model.main_dou)
                     {
@@ -77,12 +166,13 @@ namespace Diploma.Controllers
                         {
                             douid = Convert.ToInt32(dou),
                             userid = i.id,
-                            dou_user_rate = model.privilege,
-                            status = 0
-                       //authid = Account.GetName(User.Identity.Name).id
+                            dou_user_rate = lgota,
+                            age_group = DouConnectionClass.GetAgeGroup(model.date_birth),
+                            enrolled = false
+                            //authid = Account.GetName(User.Identity.Name).id
 
-                       //main_dou = Convert.ToInt32(model.main_dou),
-                       //another_dou = Convert.ToInt32(model.another_dou),
+                            //main_dou = Convert.ToInt32(model.main_dou),
+                            //another_dou = Convert.ToInt32(model.another_dou),
                         });
                         entity.SaveChanges();
                     }
@@ -92,8 +182,9 @@ namespace Diploma.Controllers
                         {
                             douid = Convert.ToInt32(dou),
                             userid = i.id,
-                            dou_user_rate = model.privilege*1.25,
-                            status = 0
+                            dou_user_rate = lgota * 1.25,
+                            age_group = DouConnectionClass.GetAgeGroup(model.date_birth),
+                            enrolled = false
                             //authid = Account.GetName(User.Identity.Name).id
 
                             //main_dou = Convert.ToInt32(model.main_dou),
@@ -117,6 +208,7 @@ namespace Diploma.Controllers
             var streets = new List<SelectListItem>();
 
             var streetsbyid = GetStreets.GetStreetsById(Convert.ToInt32(id));
+            streets.Add(new SelectListItem() { Text = "", Value = null });
             foreach (var i in streetsbyid)
             {
                 streets.Add(new SelectListItem() { Text = i.street1, Value = i.id.ToString() });
@@ -134,6 +226,7 @@ namespace Diploma.Controllers
             var houses = new List<SelectListItem>();
 
             var housesbyid = GetHouses.GetHousesById(Convert.ToInt32(id));
+            houses.Add(new SelectListItem() { Text = "", Value = null });
             foreach (var i in housesbyid)
             {
                 houses.Add(new SelectListItem() { Text = i.num, Value = i.id.ToString() });

@@ -1,15 +1,330 @@
 ﻿body
 {
-    font-size: .85em;
-    font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
+    font-size: 0.5em; 
+    
+	margin: 0;
+	padding: 0;
+	background: #FFFFFF;
+	font: normal small "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #666666;
 }
 
-header, footer, nav, section
-{
-    display: block;
+/*Мои стили*/
+
+#image {
+    
+background-image: url(images/delete.png);
+background-repeat: no-repeat;    
 }
+
+.ryad {
+    float: left;
+    width: 100px;
+    margin-left:15px;
+}
+
+.line1 {
+    width: 660px; 
+    height: 80px;
+}
+.line2 {
+   width: 660px;
+   height: 80px;
+} 
+.line3 
+{
+    margin-top: 15px;
+   width: 660px; 
+} 
+
+#login 
+{
+    margin-top: 10px;
+    float: right;
+    margin-right: 10px; 
+    text-decoration: underline;   
+}
+
+#adm 
+{
+    margin-top: 10px;
+    float: left;
+    margin-left: 10px;
+}
+
+#logo 
+{
+    font-size: 1.6em;
+    margin-top: 5px;
+    float: left;
+    margin-left: 10px;  
+}
+
+#logo a
+{
+    color: red!important;
+}
+
+#distrib 
+{
+    width: 510px;
+    height: 300px;
+    left: 50%;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    background: #CCCCCC;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#auth 
+{
+    width: 320px;
+    height: 380px;
+    left: 50%;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    background: #CCCCCC;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#reg
+{
+    width: 400px;
+    height: 500px;
+    left: 50%;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: #CCCCCC;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#lines li {
+    list-style-type: none;
+    display: inline;
+}
+#getinline 
+{
+    float: left;
+    font-size: 1.2em;
+    height: 100%;
+    width: 350px;
+    margin-left: 5px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: #CCCCCC;
+    border-radius: 10px;
+    padding: 20px;
+}
+/*Из шаблона*/
+
+a {
+	color: #268ED4;
+	text-decoration: none;
+}
+
+a:visited { color: #551a8b; }
+a:hover {text-decoration: underline;}
+a:focus { outline: thin dotted; }
+
+img {
+	border: none;
+}
+
+#header 
+{
+    color: #FFFFFF;
+	height: 40px;
+	background: #5A5A5A url(images/img01.gif) repeat-x;
+}
+
+#header h1 {
+	width: 760px;
+	margin: 0 auto;
+	padding: 12px 0 0 0;
+	font-size: 1em;
+}
+
+#header h2 {
+	width: 760px;
+	margin: -18px auto 0 auto;
+	text-align: right;
+	font-size: 1em;
+}
+
+#header a 
+{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+/* Pages */
+
+#pages {
+	height: 110px;
+	padding-top: 10px;
+	background: url(images/img02.gif) repeat-x;
+}
+
+#pages h2 {
+	display: none;
+}
+
+#pages ul {
+	display: block;
+	width: 760px;
+	height: 100px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#pages li {
+	display: inline;
+}
+
+#pages a {
+	display: block;
+	float: left;
+	width: 152px;
+	height: 75px;
+	padding: 35px 0 0 0;
+	text-align: center;
+	text-decoration: none;
+	text-transform: lowercase;
+	letter-spacing: -1px;
+	font-size: 1.4em;
+	font-weight: normal;
+	color: #333333;
+}
+
+#pages a:hover {
+	color: #000000;
+}
+
+#page1 { background: #E5FAA1 url(images/img03.gif) no-repeat; }
+#page2 { background: #97F0E6 url(images/img04.gif) no-repeat; }
+#page3 { background: #F3B6CE url(images/img05.gif) no-repeat; }
+#page4 { background: #FADDA1 url(images/img06.gif) no-repeat; }
+#page5 { background: #C9CDFF url(images/img07.gif) no-repeat; }
+
+#page1:hover, #pages .active #page1 { background-image: url(images/img08.gif); }
+#page2:hover, #pages .active #page2 { background-image: url(images/img09.gif); }
+#page3:hover, #pages .active #page3 { background-image: url(images/img10.gif); }
+#page4:hover, #pages .active #page4 { background-image: url(images/img11.gif); }
+/*#page5:hover, #pages .active #page5 { background-image: url(images/img12.gif); }*/
+
+/* Content */
+
+#content {
+	width: 760px;
+	margin: 0 auto;
+	padding: 20px 0 0 0;
+}
+
+/* Latest Post Box */
+
+#latest-post {
+	float: left;
+	width: 400px;
+}
+
+#latest-post .title {
+	letter-spacing: -1px;
+	font-size: 2.2em;
+}
+
+#latest-post .posted {
+	margin-bottom: 2em;
+	font-size: .8em;
+	font-weight: normal;
+}
+
+#latest-post .image {
+	float: left;
+	margin: .3em 1em 0 0;
+}
+
+#latest-post p, #latest-post blockquote, #latest-post ul, #latest-post ol {
+	line-height: 155%;
+}
+
+/* Recent Posts Box */
+
+#recent-posts {
+	float: right;
+	width: 320px;
+}
+
+#recent-posts h3 {
+	width: 310px;
+	height: 32px;
+	padding: 12px 0 0 10px;
+	background: #5A5A5A url(images/img13.gif);
+	font-size: 1em;
+	color: #FFFFFF;
+}
+
+#recent-posts ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#recent-posts li {
+	padding: 5px 10px;
+	border-bottom: 1px solid #5A5A5A;
+}
+
+#recent-posts li:hover {
+	background: #EFEFEF;
+}
+
+#details ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#details li {
+	padding: 5px 10px;
+	border-bottom: 1px solid #5A5A5A;
+}
+
+#details li:hover {
+	background: #EFEFEF;
+}
+
+/* Column One */
+
+#colOne {
+	padding-bottom: 20px;
+}
+
+/* Footer */
+
+#footer 
+{
+    position: fixed;
+    left: 0; bottom: 0;
+    width: 100%;
+    height: 20px;
+    clear: both;
+    margin: 0 auto;
+	padding: 10px;
+	background: url(images/img02.gif) repeat-x;
+	text-align: center;
+}
+
+
+
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
@@ -105,7 +420,6 @@ input:focus{
    ========================================================================== */
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
-audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
 audio:not([controls]) { display: none; }
 [hidden] { display: none; }
 
@@ -123,8 +437,6 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 
 html, button, input, select, textarea { font-family: Arial, Helvetica, sans-serif; color: #222; }
 
-body { margin: 0; font-size: 1em; line-height: 1.4; }
-
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection declarations have to be separate
@@ -134,15 +446,6 @@ body { margin: 0; font-size: 1em; line-height: 1.4; }
 ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
 ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
 
-
-/* =============================================================================
-   Links
-   ========================================================================== */
-
-a { color: #00e; }
-a:visited { color: #551a8b; }
-a:hover { color: #06e; }
-a:focus { outline: thin dotted; }
 
 /* Improve readability when focused and hovered in all browsers: h5bp.com/h */
 a:hover, a:active { outline: 0; }
@@ -232,7 +535,7 @@ label { cursor: pointer; }
  * 2. Correct alignment displayed oddly in IE6/7
  */
 
-legend { border: 0; *margin-left: -7px; padding: 0; white-space: normal; }
+/*legend { border: 0; *margin-left: -7px; padding: 0; white-space: normal; }*/
 
 /*
  * 1. Correct font-size not inheriting in all browsers
@@ -240,7 +543,7 @@ legend { border: 0; *margin-left: -7px; padding: 0; white-space: normal; }
  * 3. Define consistent vertical alignment display in all browsers
  */
 
-button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
+/*button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }*/
 
 /*
  * 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet)
@@ -254,7 +557,7 @@ button, input { line-height: normal; }
  * 3. Correct inner spacing displayed oddly in IE7 (doesn't effect IE6)
  */
 
-button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
+/*button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }*/
 
 /*
  * Re-set default cursor for disabled elements
@@ -307,34 +610,7 @@ td { vertical-align: top; }
    Author:
    ========================================================================== */
 
-#RMAMain { width: 100%; overflow: hidden; }
-#RMAContainer { background: #FFFFFF; max-width: 800px; margin: 0 auto; }
-#RMAForm { width: 100%; overflow: hidden; padding: 10px 0 2px 0; border-radius: 8px; -webkit-border-radius: 8px; -moz-border-radius: 8px; -ms-border-radius: 8px; -o-border-radius: 8px; border: 2px solid #CCC; }
-#RMAForm2 { max-width: 800px; margin: 0 auto; overflow: hidden; padding: 10px 0; border-radius: 8px; -webkit-border-radius: 8px; -moz-border-radius: 8px; -ms-border-radius: 8px; -o-border-radius: 8px; border: 2px solid #CCC; margin-top: 25px;background: url(logo.jpg) 95% 50% no-repeat;}
-#RMAForm input { padding: 5px; width: 173px; margin-top: 2px; font-size: 75%;}
-#RMAForm ul { list-style: none; float: left; }
-#RMAForm select { width: 185px; padding: 2px 0; margin-top: 2px;}
-#RMAForm li { padding: 8px; position:relative; }
-#RMAForm label { font-size: 75%; width: 125px; display: inline-block; margin-top: 8px; font-weight: 700; text-transform: uppercase; text-align: right;  padding: 0 5px 0 0; }
-#RMAForm label.error { width: 150px; display: inline-block; margin-top: 8px; color: #F00; text-transform: none; font-weight: normal;}
-#RMAForm textarea { padding: 5px; width: 173px; margin-top: 2px; font-size: 75%;}
-#cloneRet .cloneSet { width: 400px; !important }
 
-#RMAForm input, textarea, select { 
-    border:1px solid #aaa;
-    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
-    border-radius: 2px;
-}
-#RMAForm input:focus, textarea:focus, select:focus {
-    background: #fff; 
-    border:1px solid #555; 
-    box-shadow: 0 0 3px #aaa; 
-    padding-right: 20px;
-    -moz-transition: padding .25s; 
-    -webkit-transition: padding .25s; 
-    -o-transition: padding .25s;
-    transition: padding .25s;
-}
 /* Button Style */
 button.submit {
     background-color: #68b12f;
@@ -446,14 +722,6 @@ button.AddRem:active, .next:active, .prev:active {
     background: linear-gradient(top, #FFF, #DEDEDE);
 }
 
-/*#sideContent {
-    float: right;
-    width: 400px;
-}
-
-#mainContent {
-    float: left;
-}*/
 
 button {
     margin: 0 3px;
@@ -534,3 +802,4 @@ button {
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+

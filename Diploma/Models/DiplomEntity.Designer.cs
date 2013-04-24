@@ -18,14 +18,14 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region Метаданные связи EDM
 
-[assembly: EdmRelationshipAttribute("DiplomModel", "FK_Dou_District1", "District", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.District), "Dou", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.Dou), true)]
 [assembly: EdmRelationshipAttribute("DiplomModel", "FK_Street_District", "District", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.District), "Street", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.Street), true)]
-[assembly: EdmRelationshipAttribute("DiplomModel", "FK_Dou_Street", "Street", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.Street), "Dou", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.Dou), true)]
 [assembly: EdmRelationshipAttribute("DiplomModel", "FK_House_Street", "Street", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.Street), "House", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.House), true)]
 [assembly: EdmRelationshipAttribute("DiplomModel", "FK_User_Authorization", "Authorization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.Authorization), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.User), true)]
 [assembly: EdmRelationshipAttribute("DiplomModel", "FK_User_District", "District", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.District), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.User), true)]
-[assembly: EdmRelationshipAttribute("DiplomModel", "FK_DouConnection_Dou", "Dou", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.Dou), "DouConnection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.DouConnection), true)]
 [assembly: EdmRelationshipAttribute("DiplomModel", "FK_DouConnection_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.User), "DouConnection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.DouConnection), true)]
+[assembly: EdmRelationshipAttribute("DiplomModel", "FK_Dou_District1", "District", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.District), "Dou", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.Dou), true)]
+[assembly: EdmRelationshipAttribute("DiplomModel", "FK_Dou_Street", "Street", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.Street), "Dou", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.Dou), true)]
+[assembly: EdmRelationshipAttribute("DiplomModel", "FK_DouConnection_Dou", "Dou", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Diploma.Models.Dou), "DouConnection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Diploma.Models.DouConnection), true)]
 
 #endregion
 
@@ -112,22 +112,6 @@ namespace Diploma.Models
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        public ObjectSet<Dou> Dou
-        {
-            get
-            {
-                if ((_Dou == null))
-                {
-                    _Dou = base.CreateObjectSet<Dou>("Dou");
-                }
-                return _Dou;
-            }
-        }
-        private ObjectSet<Dou> _Dou;
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
         public ObjectSet<House> House
         {
             get
@@ -188,6 +172,22 @@ namespace Diploma.Models
             }
         }
         private ObjectSet<User> _User;
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        public ObjectSet<Dou> Dou
+        {
+            get
+            {
+                if ((_Dou == null))
+                {
+                    _Dou = base.CreateObjectSet<Dou>("Dou");
+                }
+                return _Dou;
+            }
+        }
+        private ObjectSet<Dou> _Dou;
 
         #endregion
         #region Методы AddTo
@@ -206,14 +206,6 @@ namespace Diploma.Models
         public void AddToDistrict(District district)
         {
             base.AddObject("District", district);
-        }
-    
-        /// <summary>
-        /// Устаревший метод для добавления новых объектов в набор EntitySet Dou. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
-        /// </summary>
-        public void AddToDou(Dou dou)
-        {
-            base.AddObject("Dou", dou);
         }
     
         /// <summary>
@@ -246,6 +238,14 @@ namespace Diploma.Models
         public void AddToUser(User user)
         {
             base.AddObject("User", user);
+        }
+    
+        /// <summary>
+        /// Устаревший метод для добавления новых объектов в набор EntitySet Dou. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
+        /// </summary>
+        public void AddToDou(Dou dou)
+        {
+            base.AddObject("Dou", dou);
         }
 
         #endregion
@@ -575,28 +575,6 @@ namespace Diploma.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DiplomModel", "FK_Dou_District1", "Dou")]
-        public EntityCollection<Dou> Dou
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Dou>("DiplomModel.FK_Dou_District1", "Dou");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Dou>("DiplomModel.FK_Dou_District1", "Dou", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DiplomModel", "FK_Street_District", "Street")]
         public EntityCollection<Street> Street
         {
@@ -634,6 +612,28 @@ namespace Diploma.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DiplomModel", "FK_Dou_District1", "Dou")]
+        public EntityCollection<Dou> Dou
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Dou>("DiplomModel.FK_Dou_District1", "Dou");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Dou>("DiplomModel.FK_Dou_District1", "Dou", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -663,7 +663,7 @@ namespace Diploma.Models
         /// <param name="dou_group45">Исходное значение свойства dou_group45.</param>
         /// <param name="dou_group56">Исходное значение свойства dou_group56.</param>
         /// <param name="dou_group67">Исходное значение свойства dou_group67.</param>
-        public static Dou CreateDou(global::System.Int32 id, global::System.String dou_name, global::System.Int32 dou_district, global::System.Int32 dou_street, global::System.Int32 dou_house, global::System.Int32 dou_group01, global::System.Int32 dou_group12, global::System.Int32 dou_group23, global::System.Int32 dou_group34, global::System.Int32 dou_group45, global::System.Int32 dou_group56, global::System.Int32 dou_group67)
+        public static Dou CreateDou(global::System.Int32 id, global::System.String dou_name, global::System.Int32 dou_district, global::System.Int32 dou_street, global::System.String dou_house, global::System.Int32 dou_group01, global::System.Int32 dou_group12, global::System.Int32 dou_group23, global::System.Int32 dou_group34, global::System.Int32 dou_group45, global::System.Int32 dou_group56, global::System.Int32 dou_group67)
         {
             Dou dou = new Dou();
             dou.id = id;
@@ -788,7 +788,7 @@ namespace Diploma.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 dou_house
+        public global::System.String dou_house
         {
             get
             {
@@ -798,13 +798,13 @@ namespace Diploma.Models
             {
                 Ondou_houseChanging(value);
                 ReportPropertyChanging("dou_house");
-                _dou_house = StructuralObject.SetValidValue(value);
+                _dou_house = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("dou_house");
                 Ondou_houseChanged();
             }
         }
-        private global::System.Int32 _dou_house;
-        partial void Ondou_houseChanging(global::System.Int32 value);
+        private global::System.String _dou_house;
+        partial void Ondou_houseChanging(global::System.String value);
         partial void Ondou_houseChanged();
     
         /// <summary>
@@ -1097,15 +1097,17 @@ namespace Diploma.Models
         /// <param name="douid">Исходное значение свойства douid.</param>
         /// <param name="userid">Исходное значение свойства userid.</param>
         /// <param name="dou_user_rate">Исходное значение свойства dou_user_rate.</param>
-        /// <param name="status">Исходное значение свойства status.</param>
-        public static DouConnection CreateDouConnection(global::System.Int32 id, global::System.Int32 douid, global::System.Int32 userid, global::System.Double dou_user_rate, global::System.Int32 status)
+        /// <param name="age_group">Исходное значение свойства age_group.</param>
+        /// <param name="enrolled">Исходное значение свойства enrolled.</param>
+        public static DouConnection CreateDouConnection(global::System.Int32 id, global::System.Int32 douid, global::System.Int32 userid, global::System.Double dou_user_rate, global::System.Int32 age_group, global::System.Boolean enrolled)
         {
             DouConnection douConnection = new DouConnection();
             douConnection.id = id;
             douConnection.douid = douid;
             douConnection.userid = userid;
             douConnection.dou_user_rate = dou_user_rate;
-            douConnection.status = status;
+            douConnection.age_group = age_group;
+            douConnection.enrolled = enrolled;
             return douConnection;
         }
 
@@ -1216,66 +1218,52 @@ namespace Diploma.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 status
+        public global::System.Int32 age_group
         {
             get
             {
-                return _status;
+                return _age_group;
             }
             set
             {
-                OnstatusChanging(value);
-                ReportPropertyChanging("status");
-                _status = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("status");
-                OnstatusChanged();
+                Onage_groupChanging(value);
+                ReportPropertyChanging("age_group");
+                _age_group = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("age_group");
+                Onage_groupChanged();
             }
         }
-        private global::System.Int32 _status;
-        partial void OnstatusChanging(global::System.Int32 value);
-        partial void OnstatusChanged();
+        private global::System.Int32 _age_group;
+        partial void Onage_groupChanging(global::System.Int32 value);
+        partial void Onage_groupChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean enrolled
+        {
+            get
+            {
+                return _enrolled;
+            }
+            set
+            {
+                OnenrolledChanging(value);
+                ReportPropertyChanging("enrolled");
+                _enrolled = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("enrolled");
+                OnenrolledChanged();
+            }
+        }
+        private global::System.Boolean _enrolled;
+        partial void OnenrolledChanging(global::System.Boolean value);
+        partial void OnenrolledChanged();
 
         #endregion
     
         #region Свойства навигации
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DiplomModel", "FK_DouConnection_Dou", "Dou")]
-        public Dou Dou
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Dou>("DiplomModel.FK_DouConnection_Dou", "Dou").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Dou>("DiplomModel.FK_DouConnection_Dou", "Dou").Value = value;
-            }
-        }
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Dou> DouReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Dou>("DiplomModel.FK_DouConnection_Dou", "Dou");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Dou>("DiplomModel.FK_DouConnection_Dou", "Dou", value);
-                }
-            }
-        }
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -1311,6 +1299,44 @@ namespace Diploma.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("DiplomModel.FK_DouConnection_User", "User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DiplomModel", "FK_DouConnection_Dou", "Dou")]
+        public Dou Dou
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Dou>("DiplomModel.FK_DouConnection_Dou", "Dou").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Dou>("DiplomModel.FK_DouConnection_Dou", "Dou").Value = value;
+            }
+        }
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Dou> DouReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Dou>("DiplomModel.FK_DouConnection_Dou", "Dou");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Dou>("DiplomModel.FK_DouConnection_Dou", "Dou", value);
                 }
             }
         }
@@ -1617,28 +1643,6 @@ namespace Diploma.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DiplomModel", "FK_Dou_Street", "Dou")]
-        public EntityCollection<Dou> Dou
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Dou>("DiplomModel.FK_Dou_Street", "Dou");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Dou>("DiplomModel.FK_Dou_Street", "Dou", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DiplomModel", "FK_House_Street", "House")]
         public EntityCollection<House> House
         {
@@ -1651,6 +1655,28 @@ namespace Diploma.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<House>("DiplomModel.FK_House_Street", "House", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DiplomModel", "FK_Dou_Street", "Dou")]
+        public EntityCollection<Dou> Dou
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Dou>("DiplomModel.FK_Dou_Street", "Dou");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Dou>("DiplomModel.FK_Dou_Street", "Dou", value);
                 }
             }
         }
@@ -1694,9 +1720,9 @@ namespace Diploma.Models
         /// <param name="year_enter">Исходное значение свойства year_enter.</param>
         /// <param name="during_year_offer">Исходное значение свойства during_year_offer.</param>
         /// <param name="privilege">Исходное значение свойства privilege.</param>
-        /// <param name="time_of_study">Исходное значение свойства time_of_study.</param>
         /// <param name="authid">Исходное значение свойства authid.</param>
-        public static User CreateUser(global::System.Int32 id, global::System.String first_name, global::System.String last_name, global::System.String third_name, global::System.DateTime date_birth, global::System.Boolean sex, global::System.String type_doc, global::System.String series_doc, global::System.String number_doc, global::System.DateTime date_issue, global::System.Int32 adr_district, global::System.Int32 adr_street, global::System.Int32 adr_house, global::System.String pr_type, global::System.String pr_first_name, global::System.String pr_last_name, global::System.String pr_third_name, global::System.String pr_series_doc, global::System.String pr_number_doc, global::System.String pr_date_issue, global::System.Int32 year_enter, global::System.Boolean during_year_offer, global::System.Int32 privilege, global::System.Int32 time_of_study, global::System.Int32 authid)
+        /// <param name="status">Исходное значение свойства status.</param>
+        public static User CreateUser(global::System.Int32 id, global::System.String first_name, global::System.String last_name, global::System.String third_name, global::System.DateTime date_birth, global::System.Boolean sex, global::System.String type_doc, global::System.String series_doc, global::System.String number_doc, global::System.DateTime date_issue, global::System.Int32 adr_district, global::System.Int32 adr_street, global::System.Int32 adr_house, global::System.String pr_type, global::System.String pr_first_name, global::System.String pr_last_name, global::System.String pr_third_name, global::System.String pr_series_doc, global::System.String pr_number_doc, global::System.String pr_date_issue, global::System.Int32 year_enter, global::System.Boolean during_year_offer, global::System.Double privilege, global::System.Int32 authid, global::System.Int32 status)
         {
             User user = new User();
             user.id = id;
@@ -1722,8 +1748,8 @@ namespace Diploma.Models
             user.year_enter = year_enter;
             user.during_year_offer = during_year_offer;
             user.privilege = privilege;
-            user.time_of_study = time_of_study;
             user.authid = authid;
+            user.status = status;
             return user;
         }
 
@@ -2266,7 +2292,7 @@ namespace Diploma.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 privilege
+        public global::System.Double privilege
         {
             get
             {
@@ -2281,33 +2307,9 @@ namespace Diploma.Models
                 OnprivilegeChanged();
             }
         }
-        private global::System.Int32 _privilege;
-        partial void OnprivilegeChanging(global::System.Int32 value);
+        private global::System.Double _privilege;
+        partial void OnprivilegeChanging(global::System.Double value);
         partial void OnprivilegeChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 time_of_study
-        {
-            get
-            {
-                return _time_of_study;
-            }
-            set
-            {
-                Ontime_of_studyChanging(value);
-                ReportPropertyChanging("time_of_study");
-                _time_of_study = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("time_of_study");
-                Ontime_of_studyChanged();
-            }
-        }
-        private global::System.Int32 _time_of_study;
-        partial void Ontime_of_studyChanging(global::System.Int32 value);
-        partial void Ontime_of_studyChanged();
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -2332,6 +2334,30 @@ namespace Diploma.Models
         private global::System.Int32 _authid;
         partial void OnauthidChanging(global::System.Int32 value);
         partial void OnauthidChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                OnstatusChanging(value);
+                ReportPropertyChanging("status");
+                _status = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("status");
+                OnstatusChanged();
+            }
+        }
+        private global::System.Int32 _status;
+        partial void OnstatusChanging(global::System.Int32 value);
+        partial void OnstatusChanged();
 
         #endregion
     

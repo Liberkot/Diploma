@@ -1,5 +1,95 @@
-﻿@{
-    ViewBag.Title = "Distribute";
+﻿@using Diploma.Models
+@model Diploma.Models.Algoritm 
+@{
+    ViewBag.Title = "Распределение";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Distribute</h2>
+<div id="distrib">
+    <h2>
+        Распределение</h2>
+    @using (Html.BeginForm("Distribute", "Line", FormMethod.Post, new { id = "distributeform" }))
+    {
+        @Html.ValidationSummary(true, "Распределение не удалось. Проверьте вводимые данные.")
+        ;
+        <legend>Выберите по каким группа произвести распределение</legend>
+        <div class="line1">
+            <div class="ryad">
+                <div class="editor-label">
+                    @Html.LabelFor(u => u.group01)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(u => u.group01)
+                    @Html.ValidationMessageFor(u => u.group01)
+                </div>
+            </div>
+            <div class="ryad">
+                <div class="editor-label">
+                    @Html.LabelFor(u => u.group12)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(u => u.group12)
+                    @Html.ValidationMessageFor(u => u.group12)
+                </div>
+            </div>
+            <div class="ryad">
+                <div class="editor-label">
+                    @Html.LabelFor(u => u.group23)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(u => u.group23)
+                    @Html.ValidationMessageFor(u => u.group23)
+                </div>
+            </div>
+            <div class="ryad">
+                <div class="editor-label">
+                    @Html.LabelFor(u => u.group34)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(u => u.group34)
+                    @Html.ValidationMessageFor(u => u.group34)
+                </div>
+            </div>
+        </div>
+        <div class="line2">
+            <div class="ryad">
+                <div class="editor-label">
+                    @Html.LabelFor(u => u.group45)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(u => u.group45)
+                    @Html.ValidationMessageFor(u => u.group45)
+                </div>
+            </div>
+            <div class="ryad">
+                <div class="editor-label">
+                    @Html.LabelFor(u => u.group56)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(u => u.group56)
+                    @Html.ValidationMessageFor(u => u.group56)
+                </div>
+            </div>
+            <div class="ryad">
+                <div class="editor-label">
+                    @Html.LabelFor(u => u.group67)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(u => u.group67)
+                    @Html.ValidationMessageFor(u => u.group67)
+                </div>
+            </div>
+            <div class="ryad">
+              <div class="editor-label">
+                    @Html.LabelFor(u => u.during_year_offer)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(u => u.during_year_offer)
+                    @Html.ValidationMessageFor(u => u.during_year_offer)
+                </div>  
+            </div>
+        </div>
+        <div class="line3">
+            <input type="submit" value="Распределить" />
+        </div>
+    }
+</div>

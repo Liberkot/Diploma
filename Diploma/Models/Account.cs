@@ -57,7 +57,7 @@ namespace Diploma.Models
             return (user);
         }
 
-        public static int GetKidsNum(string _email)
+        /*public static int GetKidsNum(string _email)
         {
             int numberkids;
             var entity = new DiplomEntities();
@@ -82,7 +82,7 @@ namespace Diploma.Models
             var series_user = users.Where(i => i.series_doc == _series);
             var number_user = series_user.Where(i => i.number_doc == _number);
             return (number_user);
-        }
+        }*/
     }
 
     public class RegisterAccount

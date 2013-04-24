@@ -155,9 +155,5 @@ namespace Diploma.Models
         [Required]
         [Display(Name = "Льгота")]
         public int privilege { get; set; }
-
-        [Required]
-        [Display(Name = "Время обучения")]
-        public int time_of_study { get; set; }
     }
 }

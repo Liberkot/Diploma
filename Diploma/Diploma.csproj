@@ -77,10 +77,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DiplomEntity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DouConnectionClass.cs" />
     <Compile Include="Models\GetDistricts.cs" />
     <Compile Include="Models\GetDou.cs" />
     <Compile Include="Models\GetHouses.cs" />
     <Compile Include="Models\GetStreets.cs" />
+    <Compile Include="Models\GetUsers.cs" />
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\Privelege.cs" />
     <Compile Include="Models\User.cs" />
@@ -194,6 +196,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Line\Distribute.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Line\Restricted.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Line\Distributed.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\_KidsPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Changed.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Restricted.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\NotFound.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
@@ -40,8 +40,15 @@
     </script>
 </head>
 <body>
-    @Html.Partial("_LogOnPartial")
-    <h3>@Html.ActionLink("Главная страница", "Index", "Home")</h3>
-    @RenderBody()
+        <div id="header">
+            <div id="logo">@Html.ActionLink("Электронная очередь", "Index", "Home")</div>
+            @Html.Partial("_LogOnPartial")
+        </div>
+        @RenderBody()
+        <div style="clear: both;">
+            &nbsp;</div>
+        <div id="footer">
+            Котов И.В. Казань 2013 год
+        </div>
 </body>
 </html>

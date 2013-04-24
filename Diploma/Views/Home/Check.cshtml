@@ -4,47 +4,70 @@
     ViewBag.Title = "Check";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>
-    Проверка места в очереди</h2>
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("GetInLine", "Home", FormMethod.Post, new { id = "checking" }))
-    {
-        Html.ValidationSummary(true, "Регистрация в очереди не удалась. Проверьте вводимые данные.");
-    <fieldset>
-        <legend>Введите данные ребёнка:</legend>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.series_doc)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.series_doc)
-            @Html.ValidationMessageFor(u => u.series_doc)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.number_doc)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.number_doc)
-            @Html.ValidationMessageFor(u => u.number_doc)
-        </div>
-        <br/>
-        <input type="submit" value="Проверить" />
-    </fieldset>
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $("#Check").click(function () {
+            $.get("/Home/GetUsers", { series: $("#series_doc").val(), number: $("#number_doc").val() }, getUsers);
+        });
+    });
+
+    function getUsers(users) {
+        $("#user_list").text("");
+        $.each(users, function (i) {
+            $("#user_list").append("<li>" + this + "</li>");
+        });
     }
-    
-    /*@
+
+</script>
+<div id="pages">
+  <h2>Pages</h2>
+    <ul>
+        <li>@Html.ActionLink("Главная страница", "Index", null, new { id = "page1" })</li>
+        <li>@Html.ActionLink("Встать в очередь", "GetInLine", null, new { id = "page2" })</li>
+        <li class="active">@Html.ActionLink("Изменить данные", "Edit", null, new { id = "page3" })</li>
+        <li>@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
+        <li><a id="page5" href="/">qweq</a></li>
+    </ul>
+</div>
+<div id="auth">
+    <h2>
+        Проверка места в очереди</h2>
+    @if (Request.IsAuthenticated)
     {
-        var enume = Account.GetKidsInfo(Account.GetName(User.Identity.Name).email, Model.series_doc, Model.number_doc).ToList();
-        foreach (var t in enume)
-            <h3>Имя: @enume.</h3>
-    }*/
-}
-else
-{
-    <p>
-        Для проверки места в очереди вашего ребенка необходимо авторизоваться.</p>
-    <p>@Html.ActionLink("Войдите", "LogOn", "Account") в свой аккаунт.</p>
-    <p>
-        Для регистрации ребёнки в очереди
-        @Html.ActionLink("зарегистрируйтесь", "Register", "Account").</p>
-}
+        using (Html.BeginForm("GetInLine", "Home", FormMethod.Post, new { id = "checking" }))
+        {
+            Html.ValidationSummary(true, "Регистрация в очереди не удалась. Проверьте вводимые данные.");
+        <fieldset>
+            <legend>Введите данные ребёнка:</legend>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.series_doc)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.series_doc)
+                @Html.ValidationMessageFor(u => u.series_doc)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.number_doc)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.number_doc)
+                @Html.ValidationMessageFor(u => u.number_doc)
+            </div>
+            <br />
+            <input type="button" id="Check" value="Проверить" />
+        </fieldset>
+        }
+        <input type="button" id="getUsers" value="Проверить1111" />
+        <ul id="user_list">
+        </ul>
+    }
+    else
+    {
+        <p>
+            Для проверки места в очереди вашего ребенка необходимо авторизоваться.</p>
+        <p>@Html.ActionLink("Войдите", "LogOn", "Account") в свой аккаунт.</p>
+        <p>
+            Для регистрации ребёнки в очереди
+            @Html.ActionLink("зарегистрируйтесь", "Register", "Account").</p>
+    }
+</div>

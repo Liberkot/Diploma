@@ -3,7 +3,7 @@
 @{    ViewBag.Title = "Вход в систему";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div id="auth">
 <h2>Авторизация</h2>
 @using (Html.BeginForm())
 {
@@ -29,7 +29,8 @@
                 @Html.CheckBoxFor(u => u.RememberMe)
                 @Html.LabelFor(u => u.RememberMe)
             </div><br/>
-            <input type="submit" value="Войти" /> Или @Html.ActionLink("Зарегистрируйтесь", "Register", "Account"), если у Вас ещё нет аккаунта.
+            <input type="submit" value="Войти" /><br/> Или @Html.ActionLink("Зарегистрируйтесь", "Register", "Account"), если у Вас ещё нет аккаунта.
         </fieldset>
     </div>
 }
+</div>

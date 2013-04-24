@@ -1,5 +1,4 @@
 ﻿@{
-    ViewBag.Title = "Вопросы и ответы";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="pages">
@@ -9,7 +8,7 @@
         <li>@Html.ActionLink("Главная страница", "Index", null, new { id = "page1" })</li>
         <li>@Html.ActionLink("Встать в очередь", "GetInLine", null, new { id = "page2" })</li>
         <li>@Html.ActionLink("Дети в очереди", "Details", null, new { id = "page3" })</li>
-        <li class="active">@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
+        <li>@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
         <li><a id="page5"></a></li>
     </ul>
 </div>
@@ -17,7 +16,9 @@
     <div id="colOne">
         <div id="latest-post">
             <h2 class="title">
-                Вопросы и ответы</h2>
+                Данные были изменены
+            </h2>
+            @Html.ActionLink("Вернуться на главную", "Index")
         </div>
     </div>
 </div>

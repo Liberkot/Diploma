@@ -86,6 +86,7 @@
                 for (k = 0; k < maindou.length; k++) {
                     ddlmain_dou.append($("<option />").val(maindou[k].Value).text(maindou[k].Text));
                 }
+                $("#main").show();
             });
         });
     });
@@ -106,283 +107,293 @@
                 for (k = 0; k < anotherdou.length; k++) {
                     ddlanother_dou.append($("<option />").val(anotherdou[k].Value).text(anotherdou[k].Text));
                 }
+                $("#another").show();
             });
         });
     });
 </script>
 <script language="javascript" type="text/javascript">
-    function hide1() {
-        $("#step1").hide();
-        $("#step2").show();
-    }
-    function show1() {
-        $("#step2").hide();
-        $("#step1").show();
-    }
-    function hide2() {
-        $("#step2").hide();
-        $("#step3").show();
-    }
-    function show2() {
-        $("#step3").hide();
-        $("#step2").show();
-    }
-    function hide3() {
-        $("#step3").hide();
-        $("#step4").show();
-    }
-    function show3() {
-        $("#step4").hide();
-        $("#step3").show();
-    }
+    $(function () {
+        //Проверка даты выдачи свидетельства о рождении
+        $("#datapicker2").change(function () {
+            alert($("#datapicker1").datepicker().val());
+            alert($("#datapicker2").datepicker().val());
+            /*if ($("#datapicker1").datepicker().val() > $("#datapicker2").datepicker().val()) {
+                alert("Дата выдачи документа не может быть раньше даты рождения!");
+            };*/
+        });
+    });
 </script>
-@if (Request.IsAuthenticated)
-{
+<div id="pages">
     <h2>
-        Встать в очередь</h2>
-    using (Html.BeginForm("GetInLine", "Home", FormMethod.Post, new { id = "form" }))
-    {
-    @Html.ValidationSummary(true, "Регистрация в очереди не удалась. Проверьте вводимые данные.");
-                
-    <fieldset id="step1" name="step1">
-        <legend>Информация о ребёнке:</legend>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.second_name)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.second_name)
-            @Html.ValidationMessageFor(u => u.second_name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.first_name)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.first_name)
-            @Html.ValidationMessageFor(u => u.first_name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.third_name)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.third_name)
-            @Html.ValidationMessageFor(u => u.third_name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.date_birth)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.date_birth, new { @id = "datepicker1"})
-            @Html.ValidationMessageFor(u => u.date_birth)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.sex)
-        </div>
-        <div class="editor-field">
-            @Html.RadioButtonFor(u => u.sex, true)
-            @Html.RadioButtonFor(u => u.sex, false)
-            @Html.ValidationMessageFor(u => u.sex)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.type_doc)
-        </div>
-        <div class="editor-field">
-            @{var list = new List<SelectListItem>();
-              list.Insert(0, new SelectListItem() { Text = "Свидетельство о рождении", Value = "Свидетельство о рождении" });
-              list.Insert(1, new SelectListItem() { Text = "Иной", Value = "Иной" });
+        Pages</h2>
+    <ul>
+        <li>@Html.ActionLink("Главная страница", "Index", null, new { id = "page1" })</li>
+        <li class="active">@Html.ActionLink("Встать в очередь", "GetInLine", null, new { id = "page2" })</li>
+        <li>@Html.ActionLink("Дети в очереди", "Details", null, new { id = "page3" })</li>
+        <li>@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
+        <li><a id="page5"></a></li>
+    </ul>
+</div>
+<div id="content">
+    <div id="colOne">
+        <div id="latest-post">
+            @if (Request.IsAuthenticated)
+            {
+                <h2 class="title">
+                    Встать в очередь</h2>
+                using (Html.BeginForm("GetInLine", "Home", FormMethod.Post, new { id = "form" }))
+                {
+                @Html.ValidationSummary(true, "Регистрация в очереди не удалась. Проверьте вводимые данные.");
+                <ul id="lines">
+                    <li>
+                        <div>
+                            <!--id="getinline">-->
+                            <fieldset id="step1" name="step1">
+                                <legend>Информация о ребёнке:</legend>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.second_name)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.second_name)
+                                    @Html.ValidationMessageFor(u => u.second_name)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.first_name)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.first_name)
+                                    @Html.ValidationMessageFor(u => u.first_name)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.third_name)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.third_name)
+                                    @Html.ValidationMessageFor(u => u.third_name)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.date_birth)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.date_birth, new { @id = "datepicker1" })
+                                    @Html.ValidationMessageFor(u => u.date_birth)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.sex)
+                                </div>
+                                <div class="editor-field">
+                                    М @Html.RadioButtonFor(u => u.sex, true)
+                                    Ж @Html.RadioButtonFor(u => u.sex, false)
+                                    @Html.ValidationMessageFor(u => u.sex)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.type_doc)
+                                </div>
+                                <div class="editor-field">
+                                    @{var list = new List<SelectListItem>();
+                                      list.Insert(0, new SelectListItem() { Text = "Свидетельство о рождении", Value = "Свидетельство о рождении" });
+                                      list.Insert(1, new SelectListItem() { Text = "Иной", Value = "Иной" });
+                                    }
+                                    @Html.DropDownListFor(u => u.type_doc, list)
+                                    @Html.ValidationMessageFor(u => u.type_doc)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.series_doc)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.series_doc)
+                                    @Html.ValidationMessageFor(u => u.series_doc)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.number_doc)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.TextBoxFor(u => u.number_doc)
+                                    @Html.ValidationMessageFor(u => u.number_doc)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.date_issue)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.date_issue, new { @id = "datepicker2" })
+                                    @Html.ValidationMessageFor(u => u.date_issue)
+                                </div>
+                                <br />
+                            </fieldset>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <!--id="getinline">-->
+                            <!--АДРЕС ПРОЖИВАНИЯ-->
+                            <fieldset id="step2" name="step2">
+                                <legend>Адрес проживания ребёнка:</legend>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.adr_district)
+                                </div>
+                                <div class="editor-field">
+                                    @{ var distlist = GetDistricts.GetAllDistrics(); }
+                                    @Html.DropDownListFor(u => u.adr_district, distlist.Select(u => new SelectListItem { Text = u.district1, Value = u.id.ToString() }), "Выберите район")
+                                    @Html.ValidationMessageFor(u => u.adr_district)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.adr_street)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(u => u.adr_street, Enumerable.Empty<SelectListItem>(), "Выберите улицу")
+                                    @Html.ValidationMessageFor(u => u.adr_street)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.adr_house)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(u => u.adr_house, Enumerable.Empty<SelectListItem>(), "Выберите номер дома")
+                                    @Html.ValidationMessageFor(u => u.adr_house)
+                                </div>
+                                <br />
+                            </fieldset>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <!--id="getinline">-->
+                            <!--ПРЕДСТАВИТЕЛИ-->
+                            <fieldset id="step3" name="step3">
+                                <legend>Информация о представителях:</legend>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.pr_type)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(u => u.pr_type, new SelectList(Users.GetPrTypes(), "Value", "Text"), "")
+                                    @Html.ValidationMessageFor(u => u.pr_type)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.pr_last_name)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.pr_last_name)
+                                    @Html.ValidationMessageFor(u => u.pr_last_name)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.pr_first_name)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.pr_first_name)
+                                    @Html.ValidationMessageFor(u => u.pr_first_name)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.pr_third_name)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.pr_third_name)
+                                    @Html.ValidationMessageFor(u => u.pr_third_name)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.pr_series_doc)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.pr_series_doc)
+                                    @Html.ValidationMessageFor(u => u.pr_series_doc)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.pr_number_doc)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.pr_number_doc)
+                                    @Html.ValidationMessageFor(u => u.pr_number_doc)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.pr_date_issue)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(u => u.pr_date_issue, new { @id = "datepicker3" })
+                                    @Html.ValidationMessageFor(u => u.pr_date_issue)
+                                </div>
+                                <br />
+                            </fieldset>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="margin-bottom: 100px;">
+                            <!--id="getinline">-->
+                            <!--ДЕТСКИЕ САДЫ-->
+                            <fieldset id="step4" name="step4">
+                                <legend>Информация о детских садах:</legend>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.year_enter)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(u => u.year_enter, Enumerable.Empty<SelectListItem>(), "Выберите год поступления")
+                                    @Html.ValidationMessageFor(u => u.year_enter)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.during_year_offer)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.CheckBoxFor(u => u.during_year_offer)
+                                    @Html.ValidationMessageFor(u => u.during_year_offer)
+                                </div>
+                                <legend>Главные ДОУ</legend>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.dou_district)
+                                </div>
+                                <div class="editor-field">
+                                    @{ var doudistlist = GetDistricts.GetAllDistrics(); }
+                                    @Html.DropDownListFor(u => u.dou_district, doudistlist.Select(u => new SelectListItem { Text = u.district1, Value = u.id.ToString() }), "Выберите район")
+                                    @Html.ValidationMessageFor(u => u.dou_district)
+                                </div>
+                                <div id="main" hidden="true">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(u => u.main_dou)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.ListBoxFor(u => u.main_dou, Enumerable.Empty<SelectListItem>())
+                                        @Html.ValidationMessageFor(u => u.main_dou)
+                                    </div>
+                                </div>
+                                <legend>Дополнительные ДОУ</legend>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.dou_district2)
+                                </div>
+                                <div class="editor-field">
+                                    @{ var doudistrictlist = GetDistricts.GetAllDistrics(); }
+                                    @Html.DropDownListFor(u => u.dou_district2, doudistrictlist.Select(u => new SelectListItem { Text = u.district1, Value = u.id.ToString() }), "Выберите район")
+                                    @Html.ValidationMessageFor(u => u.dou_district2)
+                                </div>
+                                <div id="another" hidden="true">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(u => u.another_dou)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.ListBoxFor(u => u.another_dou, Enumerable.Empty<SelectListItem>())
+                                        @Html.ValidationMessageFor(u => u.another_dou)
+                                    </div>
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(u => u.privilege)
+                                </div>
+                                <div class="editor-field">
+                                    @{ var privilegelist = Privelege.GetAllPriveleges(); }
+                                    @Html.DropDownListFor(u => u.privilege, privilegelist, new { style = "width:300px;" })
+                                    @Html.ValidationMessageFor(u => u.privilege)
+                                </div>
+                                <br />
+                                <input type="submit" value="Встать в очередь" />
+                            </fieldset>
+                        </div>
+                    </li>
+                </ul>
+                }
             }
-            @Html.DropDownListFor(u => u.type_doc, list)
-            @Html.ValidationMessageFor(u => u.type_doc)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.series_doc)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.series_doc)
-            @Html.ValidationMessageFor(u => u.series_doc)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.number_doc)
-        </div>
-        <div class="editor-label">
-            @Html.TextBoxFor(u => u.number_doc)
-            @Html.ValidationMessageFor(u => u.number_doc)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.date_issue)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.date_issue, new { @id = "datepicker2" })
-            @Html.ValidationMessageFor(u => u.date_issue)
-        </div>
-        <br />
-        <a class="ii" href="#">Выбрать адрес проживания</a>
-    </fieldset>
-    <!--АДРЕС ПРОЖИВАНИЯ-->
-    <fieldset id="step2" name="step2">
-        <legend>Адрес проживания ребёнка:</legend>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.adr_district)
-        </div>
-        <div class="editor-field">
-            @{ var distlist = GetDistricts.GetAllDistrics(); }
-            @Html.DropDownListFor(u => u.adr_district, distlist.Select(u => new SelectListItem { Text = u.district1, Value = u.id.ToString() }), "Выберите район")
-            @Html.ValidationMessageFor(u => u.adr_district)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.adr_street)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(u => u.adr_street, Enumerable.Empty<SelectListItem>(), "Выберите улицу")
-            @Html.ValidationMessageFor(u => u.adr_street)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.adr_house)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(u => u.adr_house, Enumerable.Empty<SelectListItem>(), "Выберите номер дома")
-            @Html.ValidationMessageFor(u => u.adr_house)
-        </div>
-        <br />
-        <a href="javascript:show1();">Вернуться к шагу 1</a> <a href="javascript:hide2();">Заполнить
-            иформацию о представителях</a>
-    </fieldset>    
-    <!--ПРЕДСТАВИТЕЛИ-->           
-    <fieldset id="step3" name="step3">
-        <legend>Информация о представителях:</legend>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.pr_type)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(u => u.pr_type, new SelectList(Users.GetPrTypes(), "Value", "Text"), "")
-            @Html.ValidationMessageFor(u => u.pr_type)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.pr_first_name)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.pr_first_name)
-            @Html.ValidationMessageFor(u => u.pr_first_name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.pr_last_name)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.pr_last_name)
-            @Html.ValidationMessageFor(u => u.pr_last_name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.pr_third_name)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.pr_third_name)
-            @Html.ValidationMessageFor(u => u.pr_third_name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.pr_series_doc)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.pr_series_doc)
-            @Html.ValidationMessageFor(u => u.pr_series_doc)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.pr_number_doc)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.pr_number_doc)
-            @Html.ValidationMessageFor(u => u.pr_number_doc)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.pr_date_issue)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(u => u.pr_date_issue, new { @id = "datepicker3" })
-            @Html.ValidationMessageFor(u => u.pr_date_issue)
-        </div>
-        <br />
-        <a href="javascript:show2();">Вернуться к шагу 2</a> <a href="javascript:hide3();">Выбрать
-            детские сады</a>
-    </fieldset>
-    <!--ДЕТСКИЕ САДЫ-->   
-    <fieldset id="step4" name="step4">
-        <legend>Информация о детских садах:</legend>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.year_enter)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(u => u.year_enter, Enumerable.Empty<SelectListItem>(), "Выберите год поступления")
-            @Html.ValidationMessageFor(u => u.year_enter)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.during_year_offer)
-        </div>
-        <div class="editor-field">
-            @Html.CheckBoxFor(u => u.during_year_offer)
-            @Html.ValidationMessageFor(u => u.during_year_offer)
-        </div>
-        <legend>Главные ДОУ</legend>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.dou_district)
-        </div>
-        <div class="editor-field">
-            @{ var doudistlist = GetDistricts.GetAllDistrics(); }
-            @Html.DropDownListFor(u => u.dou_district, doudistlist.Select(u => new SelectListItem { Text = u.district1, Value = u.id.ToString() }), "Выберите район")
-            @Html.ValidationMessageFor(u => u.dou_district)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.main_dou)
-        </div>
-        <div class="editor-field">
-            @Html.ListBoxFor(u => u.main_dou, Enumerable.Empty<SelectListItem>(), "Выберите главные ДОУ")
-            @Html.ValidationMessageFor(u => u.main_dou)
-        </div>
-        <legend>Дополнительные ДОУ</legend>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.dou_district2)
-        </div>
-        <div class="editor-field">
-            @{ var doudistrictlist = GetDistricts.GetAllDistrics(); }
-            @Html.DropDownListFor(u => u.dou_district2, doudistrictlist.Select(u => new SelectListItem { Text = u.district1, Value = u.id.ToString() }), "Выберите район")
-            @Html.ValidationMessageFor(u => u.dou_district2)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.another_dou)
-        </div>
-        <div class="editor-field">
-            @Html.ListBoxFor(u => u.another_dou, Enumerable.Empty<SelectListItem>(), "Выберите дополнительные ДОУ")
-            @Html.ValidationMessageFor(u => u.another_dou)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.privilege)
-        </div>
-        <div class="editor-field">
-            @{ var privilegelist = Privelege.GetAllPriveleges(); }
-            @Html.DropDownListFor(u => u.privilege, privilegelist)
-            @Html.ValidationMessageFor(u => u.privilege)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(u => u.time_of_study)
-        </div>
-        <div class="editor-field">
-            @{
-               var timeofstudy = new List<SelectListItem>();
-               timeofstudy.Add(new SelectListItem { Text = "Вечер", Value = "1" });
-               timeofstudy.Add(new SelectListItem { Text = "Утро", Value = "2" });
+            else
+            {
+                <p>
+                    Для подачи заявления на постановку ребенка на учет в детский сад необходимо авторизоваться.</p>
+                <p>@Html.ActionLink("Войдите", "LogOn", "Account") в свой аккаунт или
+                    <br />
+                    @Html.ActionLink("зарегистрируйтесь", "Register", "Account")</p>
             }
-            @Html.DropDownListFor(u => u.time_of_study, timeofstudy)
-            @Html.ValidationMessageFor(u => u.time_of_study)
         </div>
-        <br />
-        <a href="javascript:show3();">Вернуться к шагу 3</a>
-        <!--<button>Submit</button>-->
-        <input type="submit" value="Встать в очередь"/>
-    </fieldset>
-    }
-}
-else
-{
-    <p>
-        Для подачи заявления на постановку ребенка на учет в детский сад необходимо авторизоваться.</p>
-    <p>@Html.ActionLink("Войдите", "LogOn", "Account") в свой аккаунт или
-        <br />
-        @Html.ActionLink("зарегистрируйтесь", "Register", "Account")</p>
-}
+    </div>
+</div>
