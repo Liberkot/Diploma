@@ -1,0 +1,16 @@
+﻿@using Diploma.Models
+@if (Request.IsAuthenticated)
+{
+    if (Account.GetName(User.Identity.Name).admin == true)
+    {
+        <li>@Html.ActionLink("Распределить очередь", "Distribute", "Line", null, new {id = "page5"})</li>
+    }
+    else
+    {
+        <li><a id="pag5"></a></li>
+    }
+}
+else
+{
+    <li><a id="pag5"></a></li>
+}

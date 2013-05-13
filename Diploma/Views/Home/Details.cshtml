@@ -11,11 +11,13 @@
         <li>@Html.ActionLink("Встать в очередь", "GetInLine", null, new { id = "page2" })</li>
         <li class="active">@Html.ActionLink("Дети в очереди", "Details", null, new { id = "page3" })</li>
         <li>@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
-        <li><a id="page5"></a></li>
+        @Html.Partial("_AdminPartial")
     </ul>
 </div>
 @if (Request.IsAuthenticated)
 {
+    if (Account.GetName(User.Identity.Name).admin == true)
+    {
     <div id="content">
         <div id="colOne">
             <div id="latest-post">
@@ -23,21 +25,73 @@
                     Дети в очереди</h2>
                 <div id="details">
                     <ul>
-                        @{var users = GetUser.GetUsersByAuth(Account.GetName(User.Identity.Name).id);
-                          foreach (var l in users)
-                          {
-                              <li style="list-style-type: none;"><strong><a href="Edit/@l.id">@l.first_name @l.last_name</a></strong> <small><a href="Delete/@l.id" onclick="return confirm('Вы уверены, что хотите удалить запись @l.first_name @l.last_name из очереди?');">Удалить</a></small><br />
-                                  @{ var num = GetUser.GetNumberInLine(l.id); }
-                                  <small>В очереди на @num месте</small><br />
-                                  <small>Серия документа: @l.series_doc, Номер документа: @l.number_doc</small><br />
-                                  <small>Год зачисления: @l.year_enter</small><br /></li>
-                          }
+                        @{
+        var users = GetUser.GetAllUsers();
+        foreach (var l in users)
+        {
+                            <li style="list-style-type: none;"><strong><a href="Edit/@l.id">@l.first_name @l.last_name</a></strong>
+                                <small><a href="Delete/@l.id" onclick=" return confirm('Вы уверены, что хотите удалить запись @l.first_name @l.last_name из очереди?'); ">
+                                    Удалить</a></small><br />
+                                @{ var num = GetUser.GetNumberInLine(l.id); }
+                                <small>В очереди на @num месте</small><br />
+                                <small>Серия документа: @l.series_doc, Номер документа: @l.number_doc</small><br />
+                                <small>Год зачисления: @l.year_enter</small><br />
+                                <small>Льгота:
+                                    @if (l.privilege == 0.75)
+                                    {
+                                        <span>Внеочередная</span>
+                                    }
+                                    @if (l.privilege == 0.5)
+                                    {
+                                        <span>Первоочередная</span>
+                                    }
+                                    @if (l.privilege == 0.25)
+                                    {
+                                        <span>Преимущественная</span>
+                                    }
+                                    @if (l.privilege == 1)
+                                    {
+                                        <span>Нет</span>}
+                                </small>
+                                <br />
+                            </li>
+        }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> 
+    }
+    else
+    {
+    <div id="content">
+        <div id="colOne">
+            <div id="latest-post">
+                <h2 class="title">
+                    Дети в очереди</h2>
+                <div id="details">
+                    <ul>
+                        @{
+        var users = GetUser.GetUsersByAuth(Account.GetName(User.Identity.Name).id);
+        foreach (var l in users)
+        {
+                            <li style="list-style-type: none;"><strong><a href="Edit/@l.id">@l.first_name @l.last_name</a></strong>
+                                <small><a href="Delete/@l.id" onclick=" return confirm('Вы уверены, что хотите удалить запись @l.first_name @l.last_name из очереди?'); ">
+                                    Удалить</a></small><br />
+                                @{ var num = GetUser.GetNumberInLine(l.id); }
+                                <small>В очереди на @num месте</small><br />
+                                <small>Серия документа: @l.series_doc, Номер документа: @l.number_doc</small><br />
+                                <small>Год зачисления: @l.year_enter</small><br />
+                            </li>
+        }
                         }
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    }
 }
 else
 {

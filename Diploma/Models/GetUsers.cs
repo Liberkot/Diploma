@@ -7,6 +7,12 @@ namespace Diploma.Models
 {
     public class GetUser
     {
+        public static IEnumerable<User> GetAllUsers()
+        {
+            var entity = new DiplomEntities();
+            return entity.User.ToList();
+        } 
+
         public static IEnumerable<User> GetUsersByAuth(int auth)
         {
             var entity = new DiplomEntities();
@@ -16,10 +22,18 @@ namespace Diploma.Models
 
         public static int GetNumberInLine(int user)
         {
+            int k = 0;
             var entity = new DiplomEntities();
-            var usersbefore = entity.User.ToList().Where(i => i.id < user);
-            int before = usersbefore.Count();
-            return before+1;
+            var orderedusers = entity.User.OrderBy(i => i.privilege);
+            foreach (var m in orderedusers)
+            {
+                k++;
+                if (m.id == user)
+                {
+                    break;
+                }
+            }
+            return k;
         }
 
         public static User GetUsersById(int id)

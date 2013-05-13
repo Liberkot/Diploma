@@ -3,10 +3,10 @@
     {
         <div id="adm"><strong>Добро пожаловать, @Html.Encode(Account.GetName(User.Identity.Name).first_name) @Html.Encode(Account.GetName(User.Identity.Name).last_name)!</strong></div>
         <div id="login">@Html.ActionLink("Выйти", "LogOut", "Account")</div>
-        if (Account.GetName(User.Identity.Name).admin == true)
+        /*if (Account.GetName(User.Identity.Name).admin == true)
         {
            <div id="login">@Html.ActionLink("Распределить очередь", "Distribute", "Line")</div>
-        }
+        }*/
     }
 else
 {

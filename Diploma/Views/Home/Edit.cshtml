@@ -35,7 +35,7 @@
         <li>@Html.ActionLink("Встать в очередь", "GetInLine", null, new { id = "page2" })</li>
         <li>@Html.ActionLink("Дети в очереди", "Details", null, new { id = "page3" })</li>
         <li>@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
-        <li><a id="page5"></a></li>
+        @Html.Partial("_AdminPartial")
     </ul>
 </div>
 <div id="content">

@@ -213,13 +213,14 @@ img {
 #page2 { background: #97F0E6 url(images/img04.gif) no-repeat; }
 #page3 { background: #F3B6CE url(images/img05.gif) no-repeat; }
 #page4 { background: #FADDA1 url(images/img06.gif) no-repeat; }
+#pag5 { background: #C9CDFF url(images/img07.gif) no-repeat; }
 #page5 { background: #C9CDFF url(images/img07.gif) no-repeat; }
 
 #page1:hover, #pages .active #page1 { background-image: url(images/img08.gif); }
 #page2:hover, #pages .active #page2 { background-image: url(images/img09.gif); }
 #page3:hover, #pages .active #page3 { background-image: url(images/img10.gif); }
 #page4:hover, #pages .active #page4 { background-image: url(images/img11.gif); }
-/*#page5:hover, #pages .active #page5 { background-image: url(images/img12.gif); }*/
+#page5:hover, #pages .active #page5 { background-image: url(images/img12.gif); }
 
 /* Content */
 

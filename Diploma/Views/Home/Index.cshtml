@@ -10,7 +10,7 @@
         <li>@Html.ActionLink("Встать в очередь", "GetInLine", null, new { id = "page2" })</li>
         <li>@Html.ActionLink("Дети в очереди", "Details", null, new { id = "page3" })</li>
         <li>@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
-        <li><a id="page5"></a></li>
+        @Html.Partial("_AdminPartial")
     </ul>
 </div>
 <div id="content">
@@ -23,8 +23,8 @@
                     Функция <em><strong><a href="#">Встать в очередь</a></strong></em> предназначена для подачи заявления в
                      детское образовательное учреждение</p>
                 <p>
-                    Функция <em><strong><a href="#">Проверить место в очереди</a></strong></em> предназначена для проверки
-                    текущего положения ребёнка в общей очереди в детское образовательное учреждение</p>
+                    Функция <em><strong><a href="#">Дети в очереди</a></strong></em> предназначена для проверки
+                    текущего положения всех зарегистрированных с Вашего аккаунта детей в очереди в ДОУ</p>
             </div>
         </div>
         @Html.Partial("_KidsPartial")
