@@ -1,5 +1,17 @@
-﻿@{
+﻿@using Diploma.Models
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Распределение завершено</h2>
+<h3>Количество распределённых человек: @ViewData["Raspred"].</h3>
+<h3>Количество свободных мест в ДОУ после распределения:</h3>
+@{
+    var dous = GetDou.GetAllDou();
+    int k = 0;
+    foreach (var dou in dous)
+    {
+        <span>В ДОУ @dou.dou_name свободных мест: @GetDou.GetDouAllGroupsCount(dou.id) .</span><br/>
+    }
+    
+}

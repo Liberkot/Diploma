@@ -4,9 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="pages">
-  <h2>Pages</h2>
+    <h2>
+        Pages</h2>
     <ul>
-        <li class="active">@Html.ActionLink("Главная страница", "Index", null, new {id ="page1"})</li>
+        <li class="active">@Html.ActionLink("Главная страница", "Index", null, new { id = "page1" })</li>
         <li>@Html.ActionLink("Встать в очередь", "GetInLine", null, new { id = "page2" })</li>
         <li>@Html.ActionLink("Дети в очереди", "Details", null, new { id = "page3" })</li>
         <li>@Html.ActionLink("Вопросы и ответы", "FAQ", null, new { id = "page4" })</li>
@@ -20,11 +21,18 @@
                 Выберите действие:</h2>
             <div class="story">
                 <p>
-                    Функция <em><strong><a href="#">Встать в очередь</a></strong></em> предназначена для подачи заявления в
-                     детское образовательное учреждение</p>
+                    Страница <em><strong>@Html.ActionLink("Встать в очередь", "GetInLine")</strong></em> предназначена
+                    для подачи заявления в детское образовательное учреждение</p>
                 <p>
-                    Функция <em><strong><a href="#">Дети в очереди</a></strong></em> предназначена для проверки
-                    текущего положения всех зарегистрированных с Вашего аккаунта детей в очереди в ДОУ</p>
+                    Страница <em><strong>@Html.ActionLink("Дети в очереди", "Details")</strong></em> предназначена
+                    для проверки текущего положения всех зарегистрированных с Вашего аккаунта детей
+                    в очереди в ДОУ</p>
+                <p>
+                    Страница <em><strong>@Html.ActionLink("Вопросы и ответы", "FAQ")</strong></em> предназначена
+                    для поиска ответов на наиболее часто задаваемые вопросы о работе системы.</p>
+                <p>
+                    Страница <em><strong>@Html.ActionLink("Главная страница", "Index")</strong></em> предназначена
+                    для возврата на главную страницу сайта.</p>
             </div>
         </div>
         @Html.Partial("_KidsPartial")

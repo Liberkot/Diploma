@@ -55,32 +55,39 @@ namespace Diploma.Controllers
                         Algoritm.BdayRecalculate();
                         if (model.group01 == true)
                         {
-                            Algoritm.Distribution(1, model.during_year_offer);
+                            ViewData["Raspred1"] = Algoritm.Distribution(1, model.during_year_offer);
                         }
                         if (model.group12 == true)
                         {
-                            Algoritm.Distribution(2, model.during_year_offer);
+                            ViewData["Raspred2"] = Algoritm.Distribution(2, model.during_year_offer);
                         }
                         if (model.group23 == true)
                         {
-                            Algoritm.Distribution(3, model.during_year_offer);
+                            ViewData["Raspred3"] = Algoritm.Distribution(3, model.during_year_offer);
                         }
                         if (model.group34 == true)
                         {
-                            Algoritm.Distribution(4, model.during_year_offer);
+                            ViewData["Raspred4"] = Algoritm.Distribution(4, model.during_year_offer);
                         }
                         if (model.group45 == true)
                         {
-                            Algoritm.Distribution(5, model.during_year_offer);
+                            ViewData["Raspred5"] = Algoritm.Distribution(5, model.during_year_offer);
                         }
                         if (model.group56 == true)
                         {
-                            Algoritm.Distribution(6, model.during_year_offer);
+                            ViewData["Raspred6"] = Algoritm.Distribution(6, model.during_year_offer);
                         }
                         if (model.group67 == true)
                         {
-                            Algoritm.Distribution(7, model.during_year_offer);
+                            ViewData["Raspred7"] = Algoritm.Distribution(7, model.during_year_offer);
                         }
+                        ViewData["Raspred"] = Convert.ToInt32(ViewData["Raspred1"]) +
+                                              Convert.ToInt32(ViewData["Raspred2"]) +
+                                              Convert.ToInt32(ViewData["Raspred3"]) +
+                                              Convert.ToInt32(ViewData["Raspred4"]) +
+                                              Convert.ToInt32(ViewData["Raspred5"]) +
+                                              Convert.ToInt32(ViewData["Raspred6"]) +
+                                              Convert.ToInt32(ViewData["Raspred7"]);
                         return View("Distributed");
                     }
                     catch (Exception ex)

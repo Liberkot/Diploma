@@ -54,8 +54,9 @@ namespace Diploma.Models
             entity.SaveChanges();
         }
 
-        public static void Distribution(int age, bool during_year)
+        public static int Distribution(int age, bool during_year)
         {
+            int raspredeleno = 0;
             var entity = new DiplomEntities();
             var doulist = entity.Dou.ToList();
             var UserListOfDou = entity.DouConnection.ToList();//Получаем список всех заявок в ДОУ         
@@ -150,10 +151,14 @@ namespace Diploma.Models
                                 {
                                     if (group > 0)
                                     {
-                                        //is_users = true;
-                                        douuser.status = 1;
-                                        group--;
-                                        k.enrolled = true;
+                                        if (douuser.status != 1)
+                                        {
+                                            //is_users = true;
+                                            douuser.status = 1;
+                                            group--;
+                                            k.enrolled = true;
+                                            raspredeleno++;
+                                        }
                                     }
                                 }
                                 /*else
@@ -226,7 +231,7 @@ namespace Diploma.Models
                     }
                 }
             }
-
+            return raspredeleno;
         }
         /*
         public static void Distribution12()

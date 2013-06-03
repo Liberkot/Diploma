@@ -13,6 +13,17 @@ namespace Diploma.Models
             return entity.Dou;
         }
 
+        public static int GetDouAllGroupsCount(int douid)
+        {
+            var entity = new DiplomEntities();
+            var dou = entity.Dou.SingleOrDefault(i=>i.id == douid);
+            int sum = 0;
+            sum = dou.dou_group01 + dou.dou_group12 + dou.dou_group23 + dou.dou_group34 + dou.dou_group45 +
+                  dou.dou_group56 + dou.dou_group67;
+            return sum;
+        }
+
+
         public static IEnumerable<Models.Dou> GetDouById(string ID)
         {
             var entity = new DiplomEntities();
